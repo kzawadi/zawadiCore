@@ -24,6 +24,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   designsys:
     path: ../
+  device_preview: ^0.7.4
   flutter:
     sdk: flutter
   flutter_riverpod: ^0.14.0+3

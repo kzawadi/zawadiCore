@@ -10,6 +10,7 @@ class ZawadiApp extends StatelessWidget {
   final Color? primaryDarkColor;
   final Color primaryLightVariantColor;
   final Color primaryDarkVariantColor;
+  final Widget Function(BuildContext, Widget?)? builder;
   final List<NavigatorObserver>? navigatorObservers;
 
   const ZawadiApp({
@@ -19,6 +20,7 @@ class ZawadiApp extends StatelessWidget {
     required this.primaryDarkColor,
     this.primaryLightVariantColor = ZawadiColors.blue,
     this.primaryDarkVariantColor = ZawadiDarkColors.blue,
+    this.builder,
     this.navigatorObservers,
   });
   @override
@@ -43,6 +45,7 @@ class ZawadiApp extends StatelessWidget {
                 .colorScheme
                 .copyWith(primaryVariant: primaryDarkVariantColor),
           ),
+          builder: builder,
           home: home,
         );
       },
