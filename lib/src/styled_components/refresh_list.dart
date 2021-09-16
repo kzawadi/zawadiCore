@@ -1,6 +1,8 @@
 import 'package:designsys/designsys.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
+/// A beautful liquid pull to refresh following zawadi design system
+/// it takes a child of type widget, a void function,color and background color
 class RefreshList extends StatelessWidget {
   final Widget? child;
   final Future<void> Function()? onRefresh;

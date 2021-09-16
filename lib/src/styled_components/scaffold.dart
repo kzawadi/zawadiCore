@@ -1,5 +1,8 @@
 import 'package:designsys/designsys.dart';
 
+///Just like a stock scaffold from flutter but this is modified for
+///consistency with zawadi custom design system
+///just some padding and when tap it defocuses all the text fields within
 class ZawadiScaffold extends StatelessWidget {
   final Widget? body;
   final Widget? bottomNavBar;

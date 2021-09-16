@@ -1,5 +1,6 @@
 import '../../designsys.dart';
 
+/// A tag following zawadi design system
 class ZawadiTag extends StatelessWidget {
   final Color? color;
 
