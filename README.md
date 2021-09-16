@@ -1,14 +1,18 @@
 # designsys
 
-A new Flutter package project.
+<h1>  This is Custom Design system Package for flutter Apps  </h1>
 
-## Getting Started
+<h3> The Goals </h3>
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+=> To unify the design of all widgets and little components to athere to a single design language
+=> Make sure the result App are layed out perfectly in all screen sizes (Tablets,Desktops,Web,  handheld<normal phones> and foldables)
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+=> The Custom layout doesn't depend on device type it depend on actualy current given display sizes
+   meaning if its a web App and the tab get rised then it will react to those changes 
+
+
+
+
+
+
+Author: Kelvin Zawadi
