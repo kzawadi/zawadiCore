@@ -4,7 +4,8 @@
 
 <h3> The Goals </h3>
 
-=> To unify the design of all widgets and little components to athere to a single design language
+=> To unify the design of all widgets and little components to athere to a single design language       
+
 => Make sure the result App are layed out perfectly in all screen sizes (Tablets,Desktops,Web,  handheld<normal phones> and foldables)
 
 => The Custom layout doesn't depend on device type it depend on actualy current given display sizes
