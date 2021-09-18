@@ -2,6 +2,12 @@ import 'package:designsys/enums/device_screen_type.dart';
 import 'package:designsys/responsive/responsive_builder.dart';
 import 'package:flutter/widgets.dart';
 
+/// This is  a widget Builder which build three device screen sizes
+/// namely
+/// * 1. mobile
+/// * 2. tablet
+/// * 3. desktop
+/// and if nothing is given tonits parameters it will default to mobile (Null-Safety)
 class ScreenTypeLayout extends StatelessWidget {
   // Mobile will be returned by default
   final Widget mobile;

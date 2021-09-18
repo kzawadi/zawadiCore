@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 
+/// This deals with device orientation
+/// it will return either [landscape] or [portrait]
 class OrientationLayout extends StatelessWidget {
   final Widget? landscape;
   final Widget portrait;
