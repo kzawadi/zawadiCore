@@ -2,7 +2,7 @@
 
 <h1>  This is Custom Design system Package for flutter Apps  </h1>
 
-<h3> The Goals </h3>
+   <h3> The Goals </h3>
 
 => To unify the design of all widgets and little components to athere to a single design language       
 
@@ -13,7 +13,16 @@
 
 
 
+   <h3>  Extreme Lab </h3>
 
+Current this unified Design system isn't tied to any architecture design 
 
+But in order to create a very good DevOps flow and make it easier i am thinking of using the MVC type of architecture to add more robustness.
+
+The goal is simple any one utilizing this Design system to have a consistency UI elements implementation across all aspects of the App.
+
+   <h3> Up coming </h3>
+
+   CI/CD  continuas intergration and deployments
 
 Author: Kelvin Zawadi

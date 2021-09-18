@@ -28,6 +28,12 @@ export 'responsive/orientation_layout.dart';
 export 'responsive/responsive_builder.dart';
 export 'responsive/screen_type_layout.dart';
 
+// Assets
+export 'assets/icons/iconly_icon.dart';
+export 'assets/icons/iconly_bold.dart';
+export 'assets/icons/iconly_line.dart';
+export 'assets/icons/iconly_curved.dart';
+
 /// A Calculator.
 class Calculator {
   /// Returns [value] plus 1.

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'ui/elements.dart';
 import 'widgets/app_drawer.dart';
 
 // An example of different Zawadi custom design system
@@ -53,8 +54,26 @@ class HomeView extends StatelessWidget {
   }
 }
 
-class HomeMobilePortrait extends StatelessWidget {
+class HomeMobilePortrait extends StatefulWidget {
+  @override
+  _HomeMobilePortraitState createState() => _HomeMobilePortraitState();
+}
+
+class _HomeMobilePortraitState extends State<HomeMobilePortrait> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  int currentIndex = 0;
+
+  void onTabTapped(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
+  final List<Widget> _views = [
+    ElementsMobilePortrait(),
+    UiElements(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -64,48 +83,33 @@ class HomeMobilePortrait extends StatelessWidget {
       ),
       key: _scaffoldKey,
       drawer: AppDrawer(),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: IconButton(
-                icon: Icon(
-                  Icons.home,
-                  size: 30,
-                ),
-                onPressed: () {
-                  _scaffoldKey.currentState!.openDrawer();
-                },
-              ),
-            )
-          ],
-        ),
+      body: _views[currentIndex],
+      bottomNavBar: BottomNavigationBar(
+        // backgroundColor: Theme.of(context).backgroundColor,
+        currentIndex: 0,
+        onTap: onTabTapped,
+        items: [
+          BottomNavigationBarItem(
+            icon: IconlyIcon(IconlyBold.Home,
+                size: 24,
+                color: currentIndex == 0
+                    ? Theme.of(context).primaryColor
+                    : Theme.of(context).colorScheme.secondaryVariant),
+            label: 'page1',
+          ),
+          BottomNavigationBarItem(
+            icon: IconlyIcon(IconlyBold.Chart,
+                size: 24,
+                color: currentIndex == 1
+                    ? Theme.of(context).primaryColor
+                    : Theme.of(context).colorScheme.secondaryVariant),
+            label: 'page2',
+          ),
+        ],
       ),
     );
   }
 }
-
-// class AppDrawer extends StatelessWidget {
-//   const AppDrawer({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     var orientation = MediaQuery.of(context).orientation;
-//     return Container(
-//       width: orientation == Orientation.portrait ? 250 : 100,
-//       decoration: BoxDecoration(
-//         color: Colors.white,
-//         boxShadow: [
-//           BoxShadow(
-//             blurRadius: 16,
-//             color: Colors.black12,
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 class _HomeMobileLandscape extends StatelessWidget {
   const _HomeMobileLandscape({Key? key}) : super(key: key);
