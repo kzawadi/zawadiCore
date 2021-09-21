@@ -1,6 +1,8 @@
 # designsys
 
 <h1>  This is Custom Design system Package for flutter Apps  </h1>
+   https://api.codemagic.io/apps/6149c2552d7e14cfd442757c/6149c2552d7e14cfd442757b/status_badge.svg
+
 
    <h3> The Goals </h3>
 
@@ -26,9 +28,9 @@ The goal is simple any one utilizing this Design system to have a consistency UI
    CI/CD  continuas intergration and deployments
 
 
-   https://api.codemagic.io/apps/6149c2552d7e14cfd442757c/6149c2552d7e14cfd442757b/status_badge.svg
+   <!-- https://api.codemagic.io/apps/6149c2552d7e14cfd442757c/6149c2552d7e14cfd442757b/status_badge.svg
 
-   [![Codemagic build status](https://api.codemagic.io/apps/6149c2552d7e14cfd442757c/6149c2552d7e14cfd442757b/status_badge.svg)](https://codemagic.io/apps/6149c2552d7e14cfd442757c/6149c2552d7e14cfd442757b/latest_build)
+   [![Codemagic build status](https://api.codemagic.io/apps/6149c2552d7e14cfd442757c/6149c2552d7e14cfd442757b/status_badge.svg)](https://codemagic.io/apps/6149c2552d7e14cfd442757c/6149c2552d7e14cfd442757b/latest_build) -->
 
 
 
