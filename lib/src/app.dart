@@ -12,16 +12,20 @@ class ZawadiApp extends StatelessWidget {
   final Color primaryDarkVariantColor;
   final Widget Function(BuildContext, Widget?)? builder;
   final List<NavigatorObserver>? navigatorObservers;
+  final GlobalKey<NavigatorState>? navigatorKey;
+  final Route<dynamic>? Function(RouteSettings)? onGenerateRoute;
 
   const ZawadiApp({
-    required this.title,
-    required this.home,
+    this.title,
+    this.home,
     required this.primaryLightColor,
     required this.primaryDarkColor,
     this.primaryLightVariantColor = ZawadiColors.blue,
     this.primaryDarkVariantColor = ZawadiDarkColors.blue,
     this.builder,
     this.navigatorObservers,
+    this.navigatorKey,
+    this.onGenerateRoute,
   });
   @override
   Widget build(BuildContext context) {
@@ -46,6 +50,8 @@ class ZawadiApp extends StatelessWidget {
                 .copyWith(primaryVariant: primaryDarkVariantColor),
           ),
           builder: builder,
+          navigatorKey: navigatorKey,
+          onGenerateRoute: onGenerateRoute,
           home: home,
         );
       },

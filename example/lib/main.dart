@@ -2,8 +2,11 @@ import 'package:designsys/designsys.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:zawadi_design/app/app.locator.dart';
+import 'package:zawadi_design/app/app.router.dart';
 
 import 'ui/elements.dart';
 import 'widgets/app_drawer.dart';
@@ -11,17 +14,22 @@ import 'widgets/app_drawer.dart';
 // An example of different Zawadi custom design system
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  setupLocator();
 
   /// Lock screen orientation to vertical
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
-    runApp(DevicePreview(
-      enabled: !kReleaseMode,
+  // SystemChrome.setPreferredOrientations(
+  //     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then(
+  //   (_) {
+  runApp(
+    DevicePreview(
+      enabled: true, //todo remember to switch this back to [!releaseMode]
       builder: (context) => ProviderScope(
         child: MyApp(),
       ),
-    ));
-  });
+    ),
+  );
+  //   },
+  // );
 }
 
 //The main entry where we load ZawadiCore from Zawadi Design system and hence use
@@ -31,12 +39,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ZawadiApp(
-      title: "Zawadi Design System",
       primaryLightColor: ZawadiColors.green,
       primaryDarkColor: ZawadiDarkColors.green,
       builder: DevicePreview.appBuilder, // Add the builder here
-
-      home: HomeView(),
+      navigatorKey: StackedService.navigatorKey,
+      onGenerateRoute: StackedRouter().onGenerateRoute,
     );
   }
 }
