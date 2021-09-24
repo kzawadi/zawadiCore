@@ -3,13 +3,15 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zawadi_design/app/app.locator.dart';
 import 'package:zawadi_design/app/app.router.dart';
+import 'package:zawadi_design/ui/elements.dart';
+import 'package:zawadi_design/widgets/app_drawer.dart';
 
-import 'ui/elements.dart';
-import 'widgets/app_drawer.dart';
+// import 'ui/elements.dart';
+// import 'widgets/app_drawer.dart';
 
 // An example of different Zawadi custom design system
 Future<void> main() async {
@@ -23,9 +25,11 @@ Future<void> main() async {
   runApp(
     DevicePreview(
       enabled: true, //todo remember to switch this back to [!releaseMode]
-      builder: (context) => ProviderScope(
-        child: MyApp(),
-      ),
+      builder: (context) =>
+          // ProviderScope(
+          // child:
+          MyApp(),
+      // ),
     ),
   );
   //   },
@@ -39,6 +43,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ZawadiApp(
+      title: "",
       primaryLightColor: ZawadiColors.green,
       primaryDarkColor: ZawadiDarkColors.green,
       builder: DevicePreview.appBuilder, // Add the builder here
