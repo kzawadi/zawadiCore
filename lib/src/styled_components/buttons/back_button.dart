@@ -15,9 +15,9 @@ class ZawadiBackButton extends StatelessWidget {
       containerHeight: 60.0,
       containerWidth: 60.0,
       borderRadius: BorderRadius.circular(50),
-      padding: EdgeInsets.zero,
+      padding: EdgeInsets.all(8),
       prefixIcon: Icon(
-        Iconsax.arrow_left_3,
+        Iconsax.arrow_left_24,
         color: [null, false].contains(isClear)
             ? Theme.of(context).colorScheme.secondaryVariant
             : Theme.of(context).primaryColor,

@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:designsys/designsys.dart';
 import 'package:zawadi_design/models/article_model.dart';
+import 'package:zawadi_design/pages/news/widgets/article_view.dart';
 
 class ArticleCardLarge extends StatelessWidget {
   const ArticleCardLarge(this.article, this.source);
@@ -10,23 +12,29 @@ class ArticleCardLarge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // return CantonMethods.viewTransition(context, ArticleView(article, source));
-      },
+      onTap: () =>
+          ZawadiMethods.viewTransition(context, ArticleView(article, source)),
       child: Card(
-        margin: EdgeInsets.only(top: 6, bottom: 6),
+        margin: EdgeInsets.all(8),
         shape:
-            const SquircleBorder(radius: BorderRadius.all(Radius.circular(45))),
+            const SquircleBorder(radius: BorderRadius.all(Radius.circular(25))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ClipSquircleBorder(
-              radius: BorderRadius.all(Radius.circular(45)),
-              child: Image.network(
-                article.getImageUrl,
+              radius: BorderRadius.all(Radius.circular(25)),
+              child: CachedNetworkImage(
+                imageUrl: article.getImageUrl,
                 fit: BoxFit.cover,
                 height: 200,
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
+              // Image.network(
+              //   article.getImageUrl,
+              //   fit: BoxFit.cover,
+              //   height: 200,
+              // ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),

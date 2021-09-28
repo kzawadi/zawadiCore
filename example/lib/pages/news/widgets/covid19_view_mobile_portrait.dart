@@ -2,30 +2,26 @@ import 'package:designsys/designsys.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
-import 'package:zawadi_design/pages/news/view_model.dart/news_viewmodel.dart';
+import 'package:zawadi_design/pages/news/view_model.dart/covid19_viewmodel.dart';
 import 'package:zawadi_design/pages/news/widgets/article_grid.dart';
 import 'package:zawadi_design/pages/news/widgets/articles_list.dart';
 
-class NewsViewMobilePortrait extends StatelessWidget {
-  const NewsViewMobilePortrait({Key? key}) : super(key: key);
+class Covid19ViewMobilePortrait extends StatelessWidget {
+  const Covid19ViewMobilePortrait({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<NewsViewModel>.reactive(
+    return ViewModelBuilder<Covid19ViewModel>.reactive(
       onModelReady: (model) => model.futureToRun,
-      builder: (context, model, child) => MobilePortraitContents(),
-      viewModelBuilder: () => NewsViewModel(),
+      builder: (context, model, child) => Covid19MobilePortraitContents(),
+      viewModelBuilder: () => Covid19ViewModel(),
     );
   }
 }
 
-class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
-  const MobilePortraitContents({
-    Key? key,
-  }) : super(key: key);
-
+class Covid19MobilePortraitContents extends ViewModelWidget<Covid19ViewModel> {
   @override
-  Widget build(BuildContext context, viewModel) {
+  Widget build(BuildContext context, Covid19ViewModel viewModel) {
     return viewModel.isBusy
         ? Loading(backgroundColor: Theme.of(context).colorScheme.primaryVariant)
         : Container(
@@ -36,22 +32,23 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
                 _header(context),
                 CupertinoSliverRefreshControl(
                   onRefresh: () async {
-                    // return await context.refresh(newsFutureProvider);
+                    // return await context.refresh(newsCOVID19Provider);
                   },
                 ),
-                ArticleList(viewModel.data!, true, false),
-                ArticleGrid(viewModel.data!, false)
+                ArticleList(viewModel.data!, false, false),
+                ArticleGrid(viewModel.data!, false),
               ],
             ),
           );
   }
 
   Widget _header(BuildContext context) {
-    return CupertinoSliverNavigationBar(
-      stretch: true,
+    return SliverAppBar(
+      floating: true,
+      elevation: 0,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      largeTitle: Text(
-        'Top Stories',
+      title: Text(
+        'Coronavirus',
         style: GoogleFonts.nunito(
           color: Theme.of(context).primaryColor,
           fontWeight: FontWeight.w800,
@@ -59,16 +56,8 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
           letterSpacing: 1.2,
         ),
       ),
-      trailing: ZawadiActionButton(
-        icon: IconlyIcon(
-          IconlyCurved.User3,
-          size: 25,
-          color: Theme.of(context).colorScheme.secondaryVariant,
-        ),
-        onPressed: () {
-          // return ZawadiMethods.viewTransition(context, CategoryListView());
-        },
-      ),
+      leading: ZawadiBackButton(isClear: true),
+      centerTitle: true,
     );
   }
 }

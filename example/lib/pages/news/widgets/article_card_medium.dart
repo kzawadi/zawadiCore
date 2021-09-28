@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:designsys/designsys.dart';
 import 'package:zawadi_design/models/article_model.dart';
+import 'package:zawadi_design/pages/news/widgets/article_view.dart';
 
 class ArticleCardMedium extends StatelessWidget {
   const ArticleCardMedium(this.article, this.source);
@@ -11,12 +13,11 @@ class ArticleCardMedium extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // return CantonMethods.viewTransition(context, ArticleView(article, source));
-      },
+      onTap: () =>
+          ZawadiMethods.viewTransition(context, ArticleView(article, source)),
       child: Card(
-        margin: EdgeInsets.only(top: 6, bottom: 6),
-        shape: SquircleBorder(radius: BorderRadius.all(Radius.circular(45))),
+        margin: EdgeInsets.all(8),
+        shape: SquircleBorder(radius: BorderRadius.all(Radius.circular(25))),
         child: Padding(
           padding: const EdgeInsets.all(7),
           child: Row(
@@ -70,13 +71,21 @@ class ArticleCardMedium extends StatelessWidget {
               Flexible(
                 flex: 1,
                 child: ClipSquircleBorder(
-                  radius: BorderRadius.all(Radius.circular(40)),
-                  child: Image.network(
-                    article.getImageUrl,
+                  radius: BorderRadius.all(Radius.circular(30)),
+                  child: CachedNetworkImage(
+                    imageUrl: article.getImageUrl,
                     fit: BoxFit.cover,
-                    width: 100,
                     height: 100,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
+
+                  // Image.network(
+                  //   article.getImageUrl,
+                  //   fit: BoxFit.cover,
+                  //   width: 100,
+                  //   height: 100,
+                  // ),
                 ),
               ),
             ],

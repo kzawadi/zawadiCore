@@ -9,10 +9,13 @@ import 'package:zawadi_design/services/api_key.dart';
 class NewsService {
   Dio _dio = Dio();
 
-  ///The Base url to fetch top headline of corana Virus in english language
+  ///The Base url to fetch top headline in english language
   String baseUrl =
-      // 'https://newsapi.org/v2/top-headlines?q=coronavirus&language=en&apiKey=$newsApiKey';
       'https://newsapi.org/v2/top-headlines?language=en&apiKey=$newsApiKey';
+
+  ///The Base url to fetch top headline of corana Virus in english language
+  String baseUrlCovid19 =
+      'https://newsapi.org/v2/top-headlines?q=coronavirus&language=en&apiKey=$newsApiKey';
 
   ///This funtion calls the News API and return a list of articles according
   /// to the url params passed during the calling of this function
@@ -21,6 +24,26 @@ class NewsService {
     try {
       final response = await _dio.get(
         baseUrl,
+      );
+
+      final results = List<Map<String, dynamic>>.from(
+        response.data['articles'],
+      );
+
+      final List<Article> articles = results
+          .map((articleData) => Article.fromMap(articleData))
+          .toList(growable: false);
+
+      return articles;
+    } on DioError catch (e) {
+      throw NewsExceptions.fromDioError(e);
+    }
+  }
+
+  Future<List<Article>> getCovid19Articles() async {
+    try {
+      final response = await _dio.get(
+        baseUrlCovid19,
       );
 
       final results = List<Map<String, dynamic>>.from(
