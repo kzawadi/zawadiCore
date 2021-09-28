@@ -27,7 +27,7 @@ class ArticleCardLarge extends StatelessWidget {
                 imageUrl: article.getImageUrl,
                 fit: BoxFit.cover,
                 height: 200,
-                placeholder: (context, url) => CircularProgressIndicator(),
+                placeholder: (context, url) => Loading(),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
               // Image.network(

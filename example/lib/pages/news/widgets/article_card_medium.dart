@@ -76,7 +76,7 @@ class ArticleCardMedium extends StatelessWidget {
                     imageUrl: article.getImageUrl,
                     fit: BoxFit.cover,
                     height: 100,
-                    placeholder: (context, url) => CircularProgressIndicator(),
+                    placeholder: (context, url) => Loading(),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
 
