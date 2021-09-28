@@ -28,6 +28,7 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
     return viewModel.isBusy
         ? Loading()
         : CustomScrollView(
+            physics: BouncingScrollPhysics(),
             slivers: [
               _header(context),
               CupertinoSliverRefreshControl(

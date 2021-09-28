@@ -15,7 +15,8 @@ class ArticleCardMedium extends StatelessWidget {
         // return CantonMethods.viewTransition(context, ArticleView(article, source));
       },
       child: Card(
-        shape: const SquircleBorder(),
+        margin: EdgeInsets.only(top: 6, bottom: 6),
+        shape: SquircleBorder(radius: BorderRadius.all(Radius.circular(45))),
         child: Padding(
           padding: const EdgeInsets.all(7),
           child: Row(

@@ -14,12 +14,14 @@ class ArticleCardLarge extends StatelessWidget {
         // return CantonMethods.viewTransition(context, ArticleView(article, source));
       },
       child: Card(
-        shape: const SquircleBorder(),
+        margin: EdgeInsets.only(top: 6, bottom: 6),
+        shape:
+            const SquircleBorder(radius: BorderRadius.all(Radius.circular(45))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ClipSquircleBorder(
-              // radius: BorderRadius.circular(45),
+              radius: BorderRadius.all(Radius.circular(45)),
               child: Image.network(
                 article.getImageUrl,
                 fit: BoxFit.cover,
