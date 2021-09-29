@@ -9,6 +9,7 @@ class COVID19Card extends StatelessWidget {
       onTap: () =>
           ZawadiMethods.viewTransition(context, Covid19ViewMobilePortrait()),
       child: Card(
+        color: Colors.brown[100],
         shape:
             const SquircleBorder(radius: BorderRadius.all(Radius.circular(25))),
         margin: EdgeInsets.all(8),

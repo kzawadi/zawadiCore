@@ -16,6 +16,7 @@ class ArticleCardSmall extends StatelessWidget {
       onTap: () =>
           ZawadiMethods.viewTransition(context, ArticleView(article, source)),
       child: Card(
+        color: Colors.white54,
         margin: EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

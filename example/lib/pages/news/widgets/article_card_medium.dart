@@ -16,6 +16,7 @@ class ArticleCardMedium extends StatelessWidget {
       onTap: () =>
           ZawadiMethods.viewTransition(context, ArticleView(article, source)),
       child: Card(
+        color: Colors.white54,
         margin: EdgeInsets.all(8),
         shape: SquircleBorder(radius: BorderRadius.all(Radius.circular(25))),
         child: Padding(

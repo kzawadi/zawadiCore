@@ -10,6 +10,7 @@ class ZawadiScaffold extends StatelessWidget {
   final EdgeInsets? padding;
   final bool? resizeToAvoidBottomInset;
   final Widget? drawer;
+  final Color? backgroundColor;
 
   const ZawadiScaffold({
     Key? key,
@@ -19,6 +20,7 @@ class ZawadiScaffold extends StatelessWidget {
     this.padding = const EdgeInsets.only(left: 17, right: 17),
     this.resizeToAvoidBottomInset,
     this.drawer,
+    this.backgroundColor,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class ZawadiScaffold extends StatelessWidget {
         appBar: appBar,
         bottomNavigationBar: bottomNavBar,
         drawer: drawer,
+        backgroundColor: backgroundColor,
         body: SafeArea(
           child: Padding(
             padding: padding ?? const EdgeInsets.only(left: 17, right: 17),

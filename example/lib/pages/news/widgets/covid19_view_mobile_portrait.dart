@@ -23,9 +23,11 @@ class Covid19MobilePortraitContents extends ViewModelWidget<Covid19ViewModel> {
   @override
   Widget build(BuildContext context, Covid19ViewModel viewModel) {
     return viewModel.isBusy
-        ? Loading(backgroundColor: Theme.of(context).colorScheme.primaryVariant)
+        ? Loading(
+            backgroundColor: Colors.brown[100],
+          )
         : Container(
-            color: Theme.of(context).canvasColor,
+            color: Colors.brown[100],
             child: CustomScrollView(
               physics: BouncingScrollPhysics(),
               slivers: [
@@ -46,7 +48,7 @@ class Covid19MobilePortraitContents extends ViewModelWidget<Covid19ViewModel> {
     return SliverAppBar(
       floating: true,
       elevation: 0,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Colors.brown[100],
       title: Text(
         'Coronavirus',
         style: GoogleFonts.nunito(

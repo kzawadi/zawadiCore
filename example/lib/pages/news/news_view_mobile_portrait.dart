@@ -27,9 +27,11 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
   @override
   Widget build(BuildContext context, viewModel) {
     return viewModel.isBusy
-        ? Loading(backgroundColor: Theme.of(context).colorScheme.primaryVariant)
+        ? Loading(
+            backgroundColor: Colors.brown[100],
+          )
         : Container(
-            color: Theme.of(context).canvasColor,
+            color: Colors.brown[100],
             child: CustomScrollView(
               physics: BouncingScrollPhysics(),
               slivers: [
@@ -49,14 +51,13 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
   Widget _header(BuildContext context) {
     return CupertinoSliverNavigationBar(
       stretch: true,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Colors.brown[100],
       largeTitle: Text(
         'Top Stories',
         style: GoogleFonts.nunito(
           color: Theme.of(context).primaryColor,
           fontWeight: FontWeight.w800,
           fontSize: 20,
-          letterSpacing: 1.2,
         ),
       ),
       trailing: ZawadiActionButton(

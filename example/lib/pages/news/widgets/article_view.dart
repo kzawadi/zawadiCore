@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:designsys/designsys.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zawadi_design/models/article_model.dart';
 
@@ -10,6 +12,7 @@ class ArticleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ZawadiScaffold(
+      backgroundColor: Colors.brown[200],
       body: SafeArea(
         child: _content(context),
       ),
@@ -68,22 +71,40 @@ class ArticleView extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 27),
           child: Text(
-              !source
-                  ? article.title!.substring(0, article.title!.indexOf(' - '))
-                  : article.title!,
-              style: Theme.of(context).textTheme.headline4),
+            !source
+                ? article.title!.substring(0, article.title!.indexOf(' - '))
+                : article.title!,
+            style: GoogleFonts.notoSans(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.bold,
+              fontSize: 22,
+            ),
+          ),
         ),
         article.getImageUrl.isNotEmpty ? SizedBox(height: 12) : Container(),
-        Image.network(
-          article.getImageUrl,
-          width: double.infinity,
+        ClipSquircleBorder(
+          radius: BorderRadius.all(Radius.circular(25)),
+          child: CachedNetworkImage(
+            imageUrl: article.getImageUrl,
+            fit: BoxFit.cover,
+            height: 250,
+            placeholder: (context, url) => Loading(),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          ),
         ),
         SizedBox(height: 7),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 17),
           child: Column(
             children: [
-              Text(authorName(), style: Theme.of(context).textTheme.button),
+              Text(
+                authorName(),
+                style: GoogleFonts.roboto(
+                  fontSize: 15,
+                  fontStyle: FontStyle.italic,
+                  color: Theme.of(context).colorScheme.secondaryVariant,
+                ),
+              ),
               Text(
                   DateFormat.yMMMd()
                       .format(DateTime.parse(article.publishedAt!)),
@@ -110,8 +131,15 @@ class ArticleView extends StatelessWidget {
   Widget _body(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 27),
-      child: Text(article.content ?? 'No Content',
-          style: Theme.of(context).textTheme.bodyText1),
+      child: Text(
+        article.content ?? 'No Content',
+        style: GoogleFonts.baskervville(
+          fontSize: 19,
+          fontStyle: FontStyle.normal,
+          fontWeight: FontWeight.normal,
+          height: 1.5,
+        ),
+      ),
     );
   }
 }
