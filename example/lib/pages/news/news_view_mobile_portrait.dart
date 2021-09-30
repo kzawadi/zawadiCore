@@ -44,7 +44,7 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
         icon: IconlyIcon(
           IconlyCurved.Setting,
           size: 25,
-          color: Theme.of(context).colorScheme.secondaryVariant,
+          color: Theme.of(context).primaryColor,
         ),
         onPressed: () {
           // return ZawadiMethods.viewTransition(context, CategoryListView());

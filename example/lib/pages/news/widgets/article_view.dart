@@ -26,7 +26,11 @@ class ArticleView extends StatelessWidget {
           textStyle: Theme.of(context).textTheme.headline6!.copyWith(
                 color: Theme.of(context).primaryColor,
               ),
+          fontWeight: FontWeight.w900,
+          fontSize: 25,
         ),
+        maxFontSize: 22,
+        minFontSize: 15,
       ),
       leading: ZawadiBackButton(
         iconColor: true,
@@ -66,18 +70,21 @@ class ArticleView extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 17),
           child: Column(
             children: [
-              Text(
+              AutoSizeText(
                 authorName(),
                 style: GoogleFonts.roboto(
                   fontSize: 15,
                   fontStyle: FontStyle.italic,
-                  color: Theme.of(context).colorScheme.secondaryVariant,
+                  color: Colors.black,
                 ),
               ),
-              Text(
+              AutoSizeText(
                   DateFormat.yMMMd()
                       .format(DateTime.parse(article.publishedAt!)),
-                  style: Theme.of(context).textTheme.bodyText1)
+                  style: GoogleFonts.roboto(
+                    textStyle: Theme.of(context).textTheme.bodyText1,
+                    color: Colors.black,
+                  ))
             ],
           ),
         ),

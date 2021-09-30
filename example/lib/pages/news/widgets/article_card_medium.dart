@@ -58,6 +58,7 @@ class ArticleCardMedium extends StatelessWidget {
                           style: GoogleFonts.notoSans(
                             // fontSize: 19,
                             fontWeight: FontWeight.w800,
+                            color: Colors.black,
                           ),
                           maxLines: 3,
                           maxFontSize: 19,

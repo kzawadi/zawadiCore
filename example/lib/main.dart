@@ -2,6 +2,7 @@ import 'package:designsys/designsys.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zawadi_design/app/app.locator.dart';
 import 'package:zawadi_design/app/app.router.dart';
@@ -10,11 +11,9 @@ import 'package:zawadi_design/app/app.router.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
-
   runApp(
     DevicePreview(
-      enabled:
-          !kProfileMode, //todo remember to switch this back to [!releaseMode]
+      enabled: false, //todo remember to switch this back to [!releaseMode]
       builder: (context) => MyApp(),
     ),
   );
@@ -26,10 +25,20 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
+    );
     return ZawadiApp(
       title: "",
       primaryLightColor: Colors.teal,
-      primaryDarkColor: Colors.white,
+      primaryDarkColor: Colors.teal,
       builder: DevicePreview.appBuilder, // Add the builder here
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,

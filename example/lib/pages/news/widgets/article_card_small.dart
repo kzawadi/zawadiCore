@@ -67,6 +67,7 @@ class ArticleCardSmall extends StatelessWidget {
                     shortenLengthenOfTitle(article.title!),
                     style: GoogleFonts.notoSans(
                       fontWeight: FontWeight.w600,
+                      color: Colors.black,
                     ),
                     minFontSize: 19,
                     overflow: TextOverflow.fade,
@@ -81,7 +82,7 @@ class ArticleCardSmall extends StatelessWidget {
               child: AutoSizeText(
                 article.getPublishedAtFormattedTime,
                 style: Theme.of(context).textTheme.caption!.copyWith(
-                      color: Theme.of(context).colorScheme.secondaryVariant,
+                      color: Theme.of(context).primaryColorLight,
                       fontWeight: FontWeight.w400,
                     ),
               ),
