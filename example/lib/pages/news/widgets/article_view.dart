@@ -41,8 +41,9 @@ class ArticleView extends StatelessWidget {
 
   Widget _description(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
+        AutoSizeText(
           !source
               ? article.title!.substring(0, article.title!.indexOf(' - '))
               : article.title!,
@@ -52,7 +53,9 @@ class ArticleView extends StatelessWidget {
             fontSize: 22,
             color: Theme.of(context).primaryColor,
           ),
+          textAlign: TextAlign.center,
         ),
+
         // ),
         article.getImageUrl.isNotEmpty ? SizedBox(height: 12) : Container(),
         ClipSquircleBorder(
@@ -116,6 +119,7 @@ class ArticleView extends StatelessWidget {
       ),
       minFontSize: 16,
       maxFontSize: 18,
+      textAlign: TextAlign.center,
     );
   }
 

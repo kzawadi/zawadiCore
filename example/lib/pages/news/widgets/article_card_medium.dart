@@ -71,9 +71,7 @@ class ArticleCardMedium extends StatelessWidget {
                         child: Text(
                           article.getPublishedAtFormattedTime,
                           style: Theme.of(context).textTheme.caption!.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondaryVariant,
+                                color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w400,
                               ),
                         ),

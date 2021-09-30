@@ -82,7 +82,7 @@ class ArticleCardSmall extends StatelessWidget {
               child: AutoSizeText(
                 article.getPublishedAtFormattedTime,
                 style: Theme.of(context).textTheme.caption!.copyWith(
-                      color: Theme.of(context).primaryColorLight,
+                      color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.w400,
                     ),
               ),

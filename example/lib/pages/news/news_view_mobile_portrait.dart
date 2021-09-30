@@ -59,9 +59,9 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
         ? Loading(
             backgroundColor: Colors.brown[100],
           )
-        : Container(
-            color: Colors.brown[100],
-            child: CustomScrollView(
+        : ZawadiScaffold(
+            backgroundColor: Colors.brown[100],
+            body: CustomScrollView(
               physics: BouncingScrollPhysics(),
               slivers: [
                 _header(context),

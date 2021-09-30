@@ -29,12 +29,15 @@ class Covid19MobilePortraitContents extends ViewModelWidget<Covid19ViewModel> {
         'Coronavirus',
         style: GoogleFonts.nunito(
           color: Theme.of(context).primaryColor,
-          fontWeight: FontWeight.w800,
+          fontWeight: FontWeight.w900,
           fontSize: 20,
           letterSpacing: 1.2,
         ),
       ),
-      leading: ZawadiBackButton(isClear: true),
+      leading: ZawadiBackButton(
+        // isClear: false,
+        iconColor: true,
+      ),
       centerTitle: true,
     );
   }
@@ -45,9 +48,9 @@ class Covid19MobilePortraitContents extends ViewModelWidget<Covid19ViewModel> {
         ? Loading(
             backgroundColor: Colors.brown[100],
           )
-        : Container(
-            color: Colors.brown[100],
-            child: CustomScrollView(
+        : ZawadiScaffold(
+            backgroundColor: Colors.brown[100],
+            body: CustomScrollView(
               physics: BouncingScrollPhysics(),
               slivers: [
                 _header(context),

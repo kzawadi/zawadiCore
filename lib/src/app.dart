@@ -29,14 +29,9 @@ class ZawadiApp extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    // return
-    //  Consumer(
-    //   builder: (context, watch, child) {
-    // final repo = watch(themeProvider);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: title!,
-      // themeMode: repo.themeMode,
       navigatorObservers: navigatorObservers ?? [],
       theme: zawadiLightTheme().copyWith(
         primaryColor: primaryLightColor,

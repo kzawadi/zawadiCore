@@ -17,7 +17,7 @@ class ZawadiScaffold extends StatelessWidget {
     this.body,
     this.bottomNavBar,
     this.appBar,
-    this.padding = const EdgeInsets.only(left: 17, right: 17),
+    this.padding = const EdgeInsets.only(left: 14, right: 14),
     this.resizeToAvoidBottomInset,
     this.drawer,
     this.backgroundColor,
