@@ -1,5 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:designsys/designsys.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:zawadi_design/models/article_model.dart';
 import 'package:zawadi_design/pages/news/widgets/article_view.dart';
 
@@ -16,7 +18,7 @@ class ArticleCardSmall extends StatelessWidget {
       onTap: () =>
           ZawadiMethods.viewTransition(context, ArticleView(article, source)),
       child: Card(
-        color: Colors.white54,
+        color: Colors.brown[200],
         margin: EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -27,7 +29,9 @@ class ArticleCardSmall extends StatelessWidget {
                 imageUrl: article.getImageUrl,
                 fit: BoxFit.cover,
                 height: 125,
-                placeholder: (context, url) => Loading(),
+                placeholder: (context, url) => Loading(
+                  color: Theme.of(context).primaryColor,
+                ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
               // Image.network(
@@ -41,18 +45,25 @@ class ArticleCardSmall extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  AutoSizeText(
                     article.name!,
                     style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: Theme.of(context).primaryColor,
                           fontWeight: FontWeight.w500,
                         ),
+                    minFontSize: 8,
+                    maxLines: 1,
+                    maxFontSize: 16,
                   ),
-                  Text(
+                  AutoSizeText(
                     shortenLengthenOfTitle(article.title!),
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                          fontWeight: FontWeight.w500,
-                        ),
+                    style: GoogleFonts.notoSans(
+                      // fontSize: 19,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    minFontSize: 19,
+                    overflow: TextOverflow.fade,
+                    maxLines: 4,
                   ),
                 ],
               ),
@@ -60,7 +71,7 @@ class ArticleCardSmall extends StatelessWidget {
             Spacer(),
             Padding(
               padding: const EdgeInsets.all(10),
-              child: Text(
+              child: AutoSizeText(
                 article.getPublishedAtFormattedTime,
                 style: Theme.of(context).textTheme.caption!.copyWith(
                       color: Theme.of(context).colorScheme.secondaryVariant,

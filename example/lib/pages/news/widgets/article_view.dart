@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:designsys/designsys.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,75 +13,60 @@ class ArticleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ZawadiScaffold(
-      backgroundColor: Colors.brown[200],
-      body: SafeArea(
-        child: _content(context),
+      backgroundColor: Colors.brown[100],
+      body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
+        slivers: <Widget>[
+          _header(context),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              _description(context),
+              _body(context),
+            ]),
+          )
+        ],
       ),
     );
-  }
-
-  Widget _content(BuildContext context) {
-    return Column(
-      children: [
-        _header(context),
-        SizedBox(height: 12),
-        Expanded(
-          child: ListView.builder(
-            itemCount: 1,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  _description(context),
-                  SizedBox(height: 12),
-                  _body(context),
-                ],
-              );
-            },
-          ),
-        ),
-      ],
-    );
+    // );
   }
 
   Widget _header(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 17),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ZawadiBackButton(isClear: true),
-          Text(
-            article.name!,
-            style: Theme.of(context).textTheme.headline6!.copyWith(
-                  color: Theme.of(context).primaryColor,
-                ),
-          ),
-          ZawadiHeaderButton(
-            backgroundColor: ZawadiColors.transparent,
-            icon: Container(),
-            onPressed: () {},
-          ),
-        ],
+    return SliverAppBar(
+      floating: true,
+      elevation: 0,
+      backgroundColor: Colors.brown[100],
+      title: AutoSizeText(
+        article.name!,
+        style: GoogleFonts.nunito(
+          color: Theme.of(context).primaryColor,
+          textStyle: Theme.of(context).textTheme.headline6!.copyWith(
+                color: Theme.of(context).primaryColor,
+              ),
+        ),
       ),
+      leading: ZawadiBackButton(
+          // isClear: false,
+          // surroundingColor: Colors.black12,
+          ),
+      centerTitle: true,
     );
   }
 
   Widget _description(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 27),
-          child: Text(
-            !source
-                ? article.title!.substring(0, article.title!.indexOf(' - '))
-                : article.title!,
-            style: GoogleFonts.notoSans(
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-            ),
+        Text(
+          !source
+              ? article.title!.substring(0, article.title!.indexOf(' - '))
+              : article.title!,
+          style: GoogleFonts.notoSans(
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+            color: Theme.of(context).primaryColor,
           ),
         ),
+        // ),
         article.getImageUrl.isNotEmpty ? SizedBox(height: 12) : Container(),
         ClipSquircleBorder(
           radius: BorderRadius.all(Radius.circular(25)),
@@ -129,17 +115,17 @@ class ArticleView extends StatelessWidget {
   }
 
   Widget _body(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 27),
-      child: Text(
-        article.content ?? 'No Content',
-        style: GoogleFonts.baskervville(
-          fontSize: 19,
-          fontStyle: FontStyle.normal,
-          fontWeight: FontWeight.normal,
-          height: 1.5,
-        ),
+    return AutoSizeText(
+      article.content ?? 'No Content',
+      style: GoogleFonts.literata(
+        // fontSize: 19,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.normal,
+        height: 1.5,
+        color: Colors.black,
       ),
+      minFontSize: 16,
+      maxFontSize: 18,
     );
   }
 }

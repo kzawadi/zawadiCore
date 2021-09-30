@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:designsys/designsys.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,18 +52,21 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
   Widget _header(BuildContext context) {
     return CupertinoSliverNavigationBar(
       stretch: true,
+      border: Border.all(style: BorderStyle.none),
       backgroundColor: Colors.brown[100],
-      largeTitle: Text(
-        'Top Stories',
+      largeTitle: AutoSizeText(
+        'For You',
         style: GoogleFonts.nunito(
           color: Theme.of(context).primaryColor,
-          fontWeight: FontWeight.w800,
-          fontSize: 20,
+          fontWeight: FontWeight.w900,
+          // fontSize: 24,
         ),
+        minFontSize: 21,
+        maxFontSize: 30,
       ),
       trailing: ZawadiActionButton(
         icon: IconlyIcon(
-          IconlyCurved.User3,
+          IconlyCurved.Setting,
           size: 25,
           color: Theme.of(context).colorScheme.secondaryVariant,
         ),

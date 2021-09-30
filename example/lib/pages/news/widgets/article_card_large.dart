@@ -1,5 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:designsys/designsys.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:zawadi_design/models/article_model.dart';
 import 'package:zawadi_design/pages/news/widgets/article_view.dart';
 
@@ -15,7 +17,7 @@ class ArticleCardLarge extends StatelessWidget {
       onTap: () =>
           ZawadiMethods.viewTransition(context, ArticleView(article, source)),
       child: Card(
-        color: Colors.white54,
+        color: Colors.brown[200],
         margin: EdgeInsets.all(8),
         shape:
             const SquircleBorder(radius: BorderRadius.all(Radius.circular(25))),
@@ -28,7 +30,9 @@ class ArticleCardLarge extends StatelessWidget {
                 imageUrl: article.getImageUrl,
                 fit: BoxFit.cover,
                 height: 200,
-                placeholder: (context, url) => Loading(),
+                placeholder: (context, url) => Loading(
+                  color: Theme.of(context).primaryColor,
+                ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
               // Image.network(
@@ -39,22 +43,29 @@ class ArticleCardLarge extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-              child: Text(
+              child: AutoSizeText(
                 article.name!,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText2!
-                    .copyWith(color: Theme.of(context).primaryColor),
+                style: GoogleFonts.notoSans(
+                  textStyle: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        color: Theme.of(context).primaryColor,
+                      ),
+                ),
+                minFontSize: 12,
+                maxFontSize: 16,
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(
-                  !source
-                      ? article.title!
-                          .substring(0, article.title!.indexOf(' - '))
-                      : article.title!,
-                  style: Theme.of(context).textTheme.headline6),
+                !source
+                    ? article.title!.substring(0, article.title!.indexOf(' - '))
+                    : article.title!,
+                style: GoogleFonts.notoSans(
+                  fontSize: 19,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),

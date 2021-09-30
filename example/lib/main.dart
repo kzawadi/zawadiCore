@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ZawadiApp(
       title: "",
-      primaryLightColor: ZawadiColors.green,
-      primaryDarkColor: ZawadiDarkColors.green,
+      primaryLightColor: Colors.teal,
+      primaryDarkColor: Colors.white,
       builder: DevicePreview.appBuilder, // Add the builder here
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
