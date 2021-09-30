@@ -6,6 +6,7 @@ import 'package:zawadi_design/pages/news/widgets/covid19_card.dart';
 
 class ArticleList extends StatelessWidget {
   const ArticleList(this.articles, this.showCovid19Card, this.source);
+
   final List<Article> articles;
   final bool showCovid19Card, source;
 

@@ -20,6 +20,25 @@ class Covid19ViewMobilePortrait extends StatelessWidget {
 }
 
 class Covid19MobilePortraitContents extends ViewModelWidget<Covid19ViewModel> {
+  Widget _header(BuildContext context) {
+    return SliverAppBar(
+      floating: true,
+      elevation: 0,
+      backgroundColor: Colors.brown[100],
+      title: Text(
+        'Coronavirus',
+        style: GoogleFonts.nunito(
+          color: Theme.of(context).primaryColor,
+          fontWeight: FontWeight.w800,
+          fontSize: 20,
+          letterSpacing: 1.2,
+        ),
+      ),
+      leading: ZawadiBackButton(isClear: true),
+      centerTitle: true,
+    );
+  }
+
   @override
   Widget build(BuildContext context, Covid19ViewModel viewModel) {
     return viewModel.isBusy
@@ -42,24 +61,5 @@ class Covid19MobilePortraitContents extends ViewModelWidget<Covid19ViewModel> {
               ],
             ),
           );
-  }
-
-  Widget _header(BuildContext context) {
-    return SliverAppBar(
-      floating: true,
-      elevation: 0,
-      backgroundColor: Colors.brown[100],
-      title: Text(
-        'Coronavirus',
-        style: GoogleFonts.nunito(
-          color: Theme.of(context).primaryColor,
-          fontWeight: FontWeight.w800,
-          fontSize: 20,
-          letterSpacing: 1.2,
-        ),
-      ),
-      leading: ZawadiBackButton(isClear: true),
-      centerTitle: true,
-    );
   }
 }

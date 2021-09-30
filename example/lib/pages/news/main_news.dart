@@ -6,6 +6,8 @@ import 'package:zawadi_design/pages/news/NewsViewMobileLandscape.dart';
 import 'package:zawadi_design/pages/news/news_view_mobile_portrait.dart';
 import 'package:zawadi_design/pages/news/news_view_tablet.dart';
 
+///The main entry to news page this class will determine the screen type and
+///orientation inorder to determine the best layout of the users devices
 class NewsMainView extends StatelessWidget {
   NewsMainView({Key? key}) : super(key: key);
 

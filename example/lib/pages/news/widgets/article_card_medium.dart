@@ -5,11 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zawadi_design/models/article_model.dart';
 import 'package:zawadi_design/pages/news/widgets/article_view.dart';
 
+///This widget is medeum sized in shape and follows after larger card in
+///front page
 class ArticleCardMedium extends StatelessWidget {
   const ArticleCardMedium(this.article, this.source);
 
   @required
   final Article article;
+
   final bool source;
 
   @override
@@ -91,13 +94,6 @@ class ArticleCardMedium extends StatelessWidget {
                     ),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
-
-                  // Image.network(
-                  //   article.getImageUrl,
-                  //   fit: BoxFit.cover,
-                  //   width: 100,
-                  //   height: 100,
-                  // ),
                 ),
               ),
             ],

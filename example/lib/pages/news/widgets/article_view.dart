@@ -5,30 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zawadi_design/models/article_model.dart';
 
+///Its called article view but also can be news view or details view
+///this page display the selected news in details
+///functionaly it take [Article] and [source] as a required arguments.
 class ArticleView extends StatelessWidget {
   const ArticleView(this.article, this.source) : super();
+
   final Article article;
   final bool source;
-
-  @override
-  Widget build(BuildContext context) {
-    return ZawadiScaffold(
-      backgroundColor: Colors.brown[100],
-      body: CustomScrollView(
-        physics: BouncingScrollPhysics(),
-        slivers: <Widget>[
-          _header(context),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              _description(context),
-              _body(context),
-            ]),
-          )
-        ],
-      ),
-    );
-    // );
-  }
 
   Widget _header(BuildContext context) {
     return SliverAppBar(
@@ -126,5 +110,25 @@ class ArticleView extends StatelessWidget {
       minFontSize: 16,
       maxFontSize: 18,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ZawadiScaffold(
+      backgroundColor: Colors.brown[100],
+      body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
+        slivers: <Widget>[
+          _header(context),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              _description(context),
+              _body(context),
+            ]),
+          )
+        ],
+      ),
+    );
+    // );
   }
 }

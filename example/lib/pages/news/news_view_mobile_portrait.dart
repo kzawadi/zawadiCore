@@ -25,30 +25,6 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
     Key? key,
   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context, viewModel) {
-    return viewModel.isBusy
-        ? Loading(
-            backgroundColor: Colors.brown[100],
-          )
-        : Container(
-            color: Colors.brown[100],
-            child: CustomScrollView(
-              physics: BouncingScrollPhysics(),
-              slivers: [
-                _header(context),
-                CupertinoSliverRefreshControl(
-                  onRefresh: () async {
-                    // return await context.refresh(newsFutureProvider);
-                  },
-                ),
-                ArticleList(viewModel.data!, true, false),
-                ArticleGrid(viewModel.data!, false)
-              ],
-            ),
-          );
-  }
-
   Widget _header(BuildContext context) {
     return CupertinoSliverNavigationBar(
       stretch: true,
@@ -75,5 +51,29 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
         },
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context, viewModel) {
+    return viewModel.isBusy
+        ? Loading(
+            backgroundColor: Colors.brown[100],
+          )
+        : Container(
+            color: Colors.brown[100],
+            child: CustomScrollView(
+              physics: BouncingScrollPhysics(),
+              slivers: [
+                _header(context),
+                CupertinoSliverRefreshControl(
+                  onRefresh: () async {
+                    // return await context.refresh(newsFutureProvider);
+                  },
+                ),
+                ArticleList(viewModel.data!, true, false),
+                ArticleGrid(viewModel.data!, false)
+              ],
+            ),
+          );
   }
 }

@@ -8,10 +8,6 @@ import 'package:zawadi_design/services/api_key.dart';
 // import 'package:zawadi_design/services/api_key.dart';
 
 class NewsService {
-  Dio _dio = Dio();
-
-  final _log = getLogger('FirestoreApi');
-
   ///The Base url to fetch top headline in english language
   String baseUrl =
       'https://newsapi.org/v2/top-headlines?language=en&apiKey=$newsApiKey';
@@ -19,6 +15,9 @@ class NewsService {
   ///The Base url to fetch top headline of corana Virus in english language
   String baseUrlCovid19 =
       'https://newsapi.org/v2/top-headlines?q=coronavirus&language=en&apiKey=$newsApiKey';
+
+  Dio _dio = Dio();
+  final _log = getLogger('FirestoreApi');
 
   ///This funtion calls the News API and return a list of articles according
   /// to the url params passed during the calling of this function

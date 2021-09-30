@@ -2,8 +2,11 @@ import 'package:designsys/designsys.dart';
 import 'package:zawadi_design/models/article_model.dart';
 import 'package:zawadi_design/pages/news/widgets/article_card_small.dart';
 
+//This will display a grid after larger card and medium and this grid
+/// contains the small card which is optimzed to take more vertical space in grid
 class ArticleGrid extends StatelessWidget {
   const ArticleGrid(this.articles, this.source);
+
   final List<Article> articles;
   final bool source;
 

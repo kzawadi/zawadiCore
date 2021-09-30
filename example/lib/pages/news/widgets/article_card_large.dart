@@ -5,10 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zawadi_design/models/article_model.dart';
 import 'package:zawadi_design/pages/news/widgets/article_view.dart';
 
+///This is the widget in front page displaying a slighlty larger card of news
+///currently only a single widgets is displayed in mobile view
 class ArticleCardLarge extends StatelessWidget {
   const ArticleCardLarge(this.article, this.source);
+
   @required
   final Article article;
+
   final bool source;
 
   @override

@@ -5,12 +5,25 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zawadi_design/models/article_model.dart';
 import 'package:zawadi_design/pages/news/widgets/article_view.dart';
 
+///The small of all which mainly its layout is more vertical and the last in
+///stack of the front page
 class ArticleCardSmall extends StatelessWidget {
   const ArticleCardSmall(this.article, this.source);
 
   @required
   final Article article;
+
   final bool source;
+
+  /// Adds '...' to end of string if string word length is greater than 15
+  String shortenLengthenOfTitle(String string) {
+    string = !source ? string.substring(0, string.indexOf(' - ')) : string;
+    if (string.split(' ').length >= 15) {
+      return ZawadiMethods.addDotsToString(string, 15);
+    } else {
+      return string;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +47,6 @@ class ArticleCardSmall extends StatelessWidget {
                 ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
-              // Image.network(
-              //   article.getImageUrl,
-              //   fit: BoxFit.cover,
-              //   height: 125,
-              // ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -58,7 +66,6 @@ class ArticleCardSmall extends StatelessWidget {
                   AutoSizeText(
                     shortenLengthenOfTitle(article.title!),
                     style: GoogleFonts.notoSans(
-                      // fontSize: 19,
                       fontWeight: FontWeight.w600,
                     ),
                     minFontSize: 19,
@@ -83,15 +90,5 @@ class ArticleCardSmall extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  /// Adds '...' to end of string if string word length is greater than 15
-  String shortenLengthenOfTitle(String string) {
-    string = !source ? string.substring(0, string.indexOf(' - ')) : string;
-    if (string.split(' ').length >= 15) {
-      return ZawadiMethods.addDotsToString(string, 15);
-    } else {
-      return string;
-    }
   }
 }

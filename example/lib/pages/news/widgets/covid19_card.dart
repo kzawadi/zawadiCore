@@ -3,6 +3,7 @@ import 'package:designsys/assets/icons/iconly_line.dart';
 import 'package:designsys/designsys.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zawadi_design/pages/news/widgets/covid19_view_mobile_portrait.dart';
+//this is a covid19 special card in which only covid 19 news will be listed
 
 class COVID19Card extends StatelessWidget {
   @override
@@ -58,9 +59,8 @@ class COVID19Card extends StatelessWidget {
                 ),
                 radius: BorderRadius.all(Radius.circular(25)),
                 size: 40.0,
-                onPressed: () {
-                  // return ZawadiMethods.viewTransition(context, COVID19View());
-                },
+                onPressed: () => ZawadiMethods.viewTransition(
+                    context, Covid19ViewMobilePortrait()),
                 backgroundColor: Theme.of(context)
                     .colorScheme
                     .secondaryVariant
