@@ -12,7 +12,7 @@ Future<void> main() async {
 
   runApp(
     DevicePreview(
-      enabled: true, //todo remember to switch this back to [!releaseMode]
+      enabled: false, //todo remember to switch this back to [!releaseMode]
       builder: (context) => MyApp(),
     ),
   );
