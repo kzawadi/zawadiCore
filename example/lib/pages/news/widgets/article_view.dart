@@ -45,9 +45,8 @@ class ArticleView extends StatelessWidget {
         ),
       ),
       leading: ZawadiBackButton(
-          // isClear: false,
-          // surroundingColor: Colors.black12,
-          ),
+        iconColor: true,
+      ),
       centerTitle: true,
     );
   }

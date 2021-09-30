@@ -25,11 +25,12 @@ class ZawadiBackButton extends StatelessWidget {
       prefixIcon: Icon(
         Iconsax.arrow_left_24,
         color: iconColor
-            ? Theme.of(context)
+            ? Theme.of(context).primaryColor
+            : Theme.of(context)
                 .colorScheme
                 .secondaryVariant //todo solve icon colo0r
 
-            : Theme.of(context).primaryColor,
+        ,
         size: 27,
       ),
       alignment: isClear ? MainAxisAlignment.start : MainAxisAlignment.center,

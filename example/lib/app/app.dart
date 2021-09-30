@@ -23,6 +23,7 @@ import 'package:zawadi_design/services/news_services.dart';
     LazySingleton(classType: NewsService),
     LazySingleton(classType: NewsViewModel),
   ],
+  logger: StackedLogger(),
 )
 class AppSetup {
   /** Serves no purpose besides having an annotation attached to it */

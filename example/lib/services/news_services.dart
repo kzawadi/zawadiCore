@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:zawadi_design/app/app.logger.dart';
 import 'package:zawadi_design/exceptions/api_exceptions.dart';
 import 'package:zawadi_design/models/article_model.dart';
 import 'package:zawadi_design/models/source.dart';
@@ -8,6 +9,8 @@ import 'package:zawadi_design/services/api_key.dart';
 
 class NewsService {
   Dio _dio = Dio();
+
+  final _log = getLogger('FirestoreApi');
 
   ///The Base url to fetch top headline in english language
   String baseUrl =
@@ -33,7 +36,8 @@ class NewsService {
       final List<Article> articles = results
           .map((articleData) => Article.fromMap(articleData))
           .toList(growable: false);
-
+      _log.i("The fetched Top headlines are Articles [first item] ");
+      _log.i(articles.first);
       return articles;
     } on DioError catch (e) {
       throw NewsExceptions.fromDioError(e);
