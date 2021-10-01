@@ -22,7 +22,6 @@ class ArticleView extends StatelessWidget {
       title: AutoSizeText(
         article.name!,
         style: GoogleFonts.nunito(
-          color: Theme.of(context).primaryColor,
           textStyle: Theme.of(context).textTheme.headline6!.copyWith(
                 color: Theme.of(context).primaryColor,
               ),
@@ -41,22 +40,25 @@ class ArticleView extends StatelessWidget {
 
   Widget _description(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        AutoSizeText(
-          !source
-              ? article.title!.substring(0, article.title!.indexOf(' - '))
-              : article.title!,
-          style: GoogleFonts.notoSans(
-            fontStyle: FontStyle.normal,
-            fontWeight: FontWeight.bold,
-            fontSize: 22,
-            color: Theme.of(context).primaryColor,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(left: 12, right: 12),
+          child: AutoSizeText(
+            !source
+                ? article.title!.substring(0, article.title!.indexOf(' - '))
+                : article.title!,
+            style: GoogleFonts.notoSans(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.bold,
+              fontSize: 22,
+              color: Theme.of(context).primaryColor,
+            ),
+            textAlign: TextAlign.start,
+            maxLines: 20,
+            minFontSize: 16,
+            maxFontSize: 22,
           ),
-          textAlign: TextAlign.center,
         ),
-
-        // ),
         article.getImageUrl.isNotEmpty ? SizedBox(height: 12) : Container(),
         ClipSquircleBorder(
           radius: BorderRadius.all(Radius.circular(25)),
@@ -72,6 +74,8 @@ class ArticleView extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 17),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AutoSizeText(
                 authorName(),
@@ -91,6 +95,7 @@ class ArticleView extends StatelessWidget {
             ],
           ),
         ),
+        SizedBox(height: 30),
       ],
     );
   }
@@ -108,18 +113,21 @@ class ArticleView extends StatelessWidget {
   }
 
   Widget _body(BuildContext context) {
-    return AutoSizeText(
-      article.content ?? 'No Content',
-      style: GoogleFonts.literata(
-        // fontSize: 19,
-        fontStyle: FontStyle.normal,
-        fontWeight: FontWeight.normal,
-        height: 1.5,
-        color: Colors.black,
+    return Padding(
+      padding: const EdgeInsets.only(left: 12, right: 12),
+      child: AutoSizeText(
+        article.content ?? 'No Content',
+        style: GoogleFonts.literata(
+          fontStyle: FontStyle.normal,
+          fontWeight: FontWeight.normal,
+          height: 1.5,
+          color: Colors.black,
+          fontSize: 19,
+        ),
+        minFontSize: 16,
+        maxFontSize: 22,
+        textAlign: TextAlign.start,
       ),
-      minFontSize: 16,
-      maxFontSize: 18,
-      textAlign: TextAlign.center,
     );
   }
 
