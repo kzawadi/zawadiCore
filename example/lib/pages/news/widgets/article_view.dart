@@ -86,12 +86,28 @@ class ArticleView extends StatelessWidget {
                 ),
               ),
               AutoSizeText(
-                  DateFormat.yMMMd()
-                      .format(DateTime.parse(article.publishedAt!)),
-                  style: GoogleFonts.roboto(
-                    textStyle: Theme.of(context).textTheme.bodyText1,
-                    color: Colors.black,
-                  ))
+                DateFormat.yMMMd().format(DateTime.parse(article.publishedAt!)),
+                style: GoogleFonts.roboto(
+                  textStyle: Theme.of(context).textTheme.bodyText1,
+                  color: Colors.black,
+                ),
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: AutoSizeText(
+                      "Read More ...",
+                      style: GoogleFonts.roboto(
+                        textStyle: Theme.of(context).textTheme.subtitle1,
+                        color: Colors.blue[900],
+                      ),
+                      minFontSize: 13,
+                      maxFontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -128,6 +144,12 @@ class ArticleView extends StatelessWidget {
         maxFontSize: 22,
         textAlign: TextAlign.start,
       ),
+    );
+  }
+
+  Widget _linkToMore(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.only(top: 8),
     );
   }
 

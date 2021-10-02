@@ -21,6 +21,9 @@ class NewsViewModel extends MultipleFutureViewModel {
         "covidArticles": () async {
           return _newsServices.getCovid19Articles();
         },
+        "sources": () async {
+          return _newsServices.getSources();
+        },
       };
 
   // @override

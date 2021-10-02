@@ -7,6 +7,7 @@ import 'package:zawadi_design/app/app.locator.dart';
 import 'package:zawadi_design/pages/news/view_model.dart/news_viewmodel.dart';
 import 'package:zawadi_design/pages/news/widgets/article_grid.dart';
 import 'package:zawadi_design/pages/news/widgets/articles_list.dart';
+import 'package:zawadi_design/pages/news_source_view/sources_view.dart';
 
 class NewsViewMobilePortrait extends StatelessWidget {
   const NewsViewMobilePortrait({Key? key}) : super(key: key);
@@ -50,9 +51,8 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
           size: 25,
           color: Theme.of(context).primaryColor,
         ),
-        onPressed: () {
-          // return ZawadiMethods.viewTransition(context, CategoryListView());
-        },
+        onPressed: () =>
+            ZawadiMethods.viewTransition(context, SourcesViewPage()),
       ),
     );
   }

@@ -15,6 +15,8 @@ class NewsService {
   ///The Base url to fetch top headline of corana Virus in english language
   String baseUrlCovid19 =
       'https://newsapi.org/v2/top-headlines?q=coronavirus&language=en&apiKey=$newsApiKey';
+  String sourcesPath =
+      'https://newsapi.org/v2/top-headlines/sources?apiKey=$newsApiKey';
 
   Dio _dio = Dio();
   final _log = getLogger('FirestoreApi');
@@ -65,17 +67,22 @@ class NewsService {
 
   ///This function returns a list of sources of News from News API
   ///it also deserilize
-  Future<List<Source>> getSources(String path) async {
+  Future<List<Source>> getSources() async {
     try {
-      final response = await _dio.get(path);
+      final response = await _dio.get(sourcesPath);
 
       final results = List<Map<String, dynamic>>.from(
         response.data['sources'],
       );
+      _log.i(
+          "Data of Sources fetched (Only showing first element)${results.first}");
 
       final List<Source> sources = results
           .map((sourceData) => Source.fromMap(sourceData))
           .toList(growable: false);
+
+      _log.i(
+          "Data of Sources fetched (Only showing first element)${sources.first}");
 
       return sources;
     } on DioError catch (e) {
