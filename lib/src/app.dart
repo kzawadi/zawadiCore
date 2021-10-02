@@ -1,5 +1,6 @@
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:designsys/designsys.dart';
+import 'package:flutter/services.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// The Main Entry to utilize the unified design system
@@ -29,28 +30,38 @@ class ZawadiApp extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: title!,
-      navigatorObservers: navigatorObservers ?? [],
-      theme: zawadiLightTheme().copyWith(
-        primaryColor: primaryLightColor,
-        colorScheme: zawadiLightTheme()
-            .colorScheme
-            .copyWith(primaryVariant: primaryLightVariantColor),
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.dark,
+        // systemNavigationBarContrastEnforced: false,
+        systemNavigationBarDividerColor: Colors.transparent,
       ),
-      darkTheme: zawadiDarkTheme().copyWith(
-        primaryColor: primaryDarkColor,
-        colorScheme: zawadiDarkTheme()
-            .colorScheme
-            .copyWith(primaryVariant: primaryDarkVariantColor),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: title!,
+        navigatorObservers: navigatorObservers ?? [],
+        theme: zawadiLightTheme().copyWith(
+          primaryColor: primaryLightColor,
+          colorScheme: zawadiLightTheme()
+              .colorScheme
+              .copyWith(primaryVariant: primaryLightVariantColor),
+        ),
+        darkTheme: zawadiDarkTheme().copyWith(
+          primaryColor: primaryDarkColor,
+          colorScheme: zawadiDarkTheme()
+              .colorScheme
+              .copyWith(primaryVariant: primaryDarkVariantColor),
+        ),
+        builder: builder,
+        navigatorKey: navigatorKey,
+        onGenerateRoute: onGenerateRoute,
+        home: home,
       ),
-      builder: builder,
-      navigatorKey: navigatorKey,
-      onGenerateRoute: onGenerateRoute,
-      home: home,
     );
-    //   },
-    // );
   }
 }
