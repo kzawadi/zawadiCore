@@ -10,16 +10,23 @@
         //     "type": "dart"
         // },
         {
-            "name": "example",
+            "name": "Flutter debug",
             "cwd": "example",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "flutterMode":"debug",
         },
         {
             "name": "Flutter profile",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
+        },
+        {
+            "name": "Flutter release",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
         },
     ]
 }

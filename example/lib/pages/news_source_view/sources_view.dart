@@ -3,7 +3,9 @@ import 'package:designsys/designsys.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:zawadi_design/app/app.locator.dart';
+import 'package:zawadi_design/models/article_model.dart';
 import 'package:zawadi_design/models/source.dart';
 import 'package:zawadi_design/pages/news/view_model.dart/news_viewmodel.dart';
 
@@ -75,7 +77,7 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           if (sources.length != 0) {
-            return SourceCard(sources[index]);
+            return SourceTile(source: sources[index]);
           } else {
             Center(
               child: Text(
@@ -94,40 +96,79 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
   }
 }
 
-class SourceCard extends StatelessWidget {
-  const SourceCard(this.source);
+//This is a temporary solution later we will create a good methods helper class
+void _launchURL(String url) async => await canLaunch(url)
+    ? await launch(
+        url,
+        enableJavaScript: true,
+        // forceWebView: true,
+        statusBarBrightness: Brightness.dark,
+      )
+    : throw 'Could not launch $url';
+
+class SourceTile extends StatelessWidget {
+  const SourceTile({Key? key, this.source}) : super(key: key);
 
   @required
-  final Source source;
+  final Source? source;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      // onTap: () => ZawadiMethods.viewTransition(context, SourceView(source)),
-      child: Card(
-        margin: EdgeInsets.only(top: 8, bottom: 8),
-        color: Colors.brown[200],
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(5),
-                child: AutoSizeText(
-                  source.name!.substring(0, 1),
-                  style: Theme.of(context).textTheme.headline5!.copyWith(
-                        color: Colors.black,
-                      ),
+    return ClipSquircleBorder(
+      radius: BorderRadius.all(Radius.circular(25)),
+      child: ZawadiExpansionTile(
+        backgroundColor: Colors.brown[200],
+        iconColor: Theme.of(context).primaryColor,
+        title: AutoSizeText(
+          source?.name ?? '',
+          style: GoogleFonts.notoSerif(
+            textStyle: Theme.of(context).textTheme.headline6,
+            color: Colors.black,
+          ),
+          minFontSize: 16,
+          maxFontSize: 18,
+        ),
+        leading: Container(
+          padding: const EdgeInsets.all(5),
+          child: AutoSizeText(
+            source!.name!.substring(0, 1),
+            style: Theme.of(context).textTheme.headline5!.copyWith(
+                  color: Colors.black,
                 ),
-              ),
-              SizedBox(width: 7),
-              Expanded(
-                child: AutoSizeText(source.name!,
-                    style: Theme.of(context).textTheme.headline6),
-              ),
-            ],
           ),
         ),
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AutoSizeText(
+              source?.description ?? '',
+              style: GoogleFonts.notoSerif(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+                color: Colors.brown[900],
+              ),
+              maxFontSize: 19,
+              minFontSize: 16,
+            ),
+          ),
+          GestureDetector(
+            onTap: () => _launchURL(source?.url ?? 'https://www.google.com/'),
+            child: Padding(
+              padding:
+                  EdgeInsets.only(top: 10, bottom: 10, left: 50, right: 50),
+              child: AutoSizeText(
+                'Visit Us',
+                style: GoogleFonts.notoSans(
+                  fontSize: 19,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor,
+                ),
+                minFontSize: 16,
+                maxFontSize: 19,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

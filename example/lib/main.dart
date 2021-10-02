@@ -12,7 +12,7 @@ Future<void> main() async {
   setupLocator();
   runApp(
     DevicePreview(
-      enabled: false, //todo remember to switch this back to [!releaseMode]
+      enabled: true, //todo remember to switch this back to [!releaseMode]
       builder: (context) => MyApp(),
     ),
   );
@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
       primaryLightColor: Colors.teal,
       primaryDarkColor: Colors.teal,
       builder: DevicePreview.appBuilder, // Add the builder here
+
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
     );
