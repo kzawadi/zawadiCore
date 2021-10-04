@@ -17,8 +17,8 @@ class Article {
 
   factory Article.fromMap(Map<String, dynamic> map) {
     return Article(
-      id: map['id'],
-      name: map['name'],
+      id: map['source']['id'],
+      name: map['source']['name'],
       author: map['author'],
       title: map['title'],
       content: map['content'],

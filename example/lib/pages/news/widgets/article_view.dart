@@ -20,9 +20,9 @@ class ArticleView extends StatelessWidget {
     return SliverAppBar(
       floating: true,
       elevation: 0,
-      backgroundColor: Colors.brown[100],
+      backgroundColor: Colors.orange[50],
       title: AutoSizeText(
-        article?.name ?? '',
+        article?.name ?? 'News',
         style: GoogleFonts.nunito(
           textStyle: Theme.of(context).textTheme.headline6!.copyWith(
                 color: Theme.of(context).primaryColor,
@@ -44,7 +44,8 @@ class ArticleView extends StatelessWidget {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(left: 12, right: 12),
+          padding:
+              const EdgeInsets.only(left: 12, right: 12, top: 10, bottom: 10),
           child: AutoSizeText(
             !source
                 ? article?.title ??
@@ -76,44 +77,28 @@ class ArticleView extends StatelessWidget {
         SizedBox(height: 7),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 17),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               AutoSizeText(
                 authorName(),
                 style: GoogleFonts.roboto(
                   fontSize: 15,
                   fontStyle: FontStyle.italic,
-                  color: Colors.black,
+                  color: Colors.black54,
                 ),
+                minFontSize: 15,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
               ),
               AutoSizeText(
                 DateFormat.yMMMd()
                     .format(DateTime.parse(article?.publishedAt ?? '')),
                 style: GoogleFonts.roboto(
                   textStyle: Theme.of(context).textTheme.bodyText1,
-                  color: Colors.black,
+                  color: Colors.black54,
                 ),
-              ),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () => _launchURL(article?.articleUrl ?? ''),
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: AutoSizeText(
-                        "Read More ...",
-                        style: GoogleFonts.roboto(
-                          textStyle: Theme.of(context).textTheme.subtitle1,
-                          color: Colors.blue[900],
-                        ),
-                        minFontSize: 13,
-                        maxFontSize: 16,
-                      ),
-                    ),
-                  ),
-                ],
               ),
             ],
           ),
@@ -148,19 +133,39 @@ class ArticleView extends StatelessWidget {
 
   Widget _body(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 12, right: 12),
-      child: AutoSizeText(
-        article?.content ?? 'No Content',
-        style: GoogleFonts.literata(
-          fontStyle: FontStyle.normal,
-          fontWeight: FontWeight.normal,
-          height: 1.5,
-          color: Colors.black,
-          fontSize: 19,
-        ),
-        minFontSize: 16,
-        maxFontSize: 22,
-        textAlign: TextAlign.start,
+      padding: const EdgeInsets.only(left: 12, right: 12, bottom: 30),
+      child: Column(
+        children: [
+          AutoSizeText(
+            "${article?.content ?? 'No Content'}" +
+                "    As Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targetsAs Glasgow looms over the federal government's climate change goals, new research could help both major parties embrace more aggressive emissions reduction targets",
+            style: GoogleFonts.literata(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.normal,
+              height: 1.5,
+              color: Colors.black,
+              fontSize: 19,
+            ),
+            minFontSize: 16,
+            maxFontSize: 22,
+            textAlign: TextAlign.start,
+          ),
+          GestureDetector(
+            onTap: () => _launchURL(article?.articleUrl ?? ''),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: AutoSizeText(
+                " << Read More >> ...",
+                style: GoogleFonts.roboto(
+                  textStyle: Theme.of(context).textTheme.subtitle1,
+                  color: Colors.blue[300],
+                ),
+                minFontSize: 13,
+                maxFontSize: 16,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -168,7 +173,8 @@ class ArticleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ZawadiScaffold(
-      backgroundColor: Colors.brown[100],
+      // padding: EdgeInsets.all(0),
+      backgroundColor: Colors.orange[50],
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: <Widget>[

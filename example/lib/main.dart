@@ -1,5 +1,6 @@
 import 'package:designsys/designsys.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:zawadi_design/app/app.locator.dart';
@@ -11,7 +12,8 @@ Future<void> main() async {
   setupLocator();
   runApp(
     DevicePreview(
-      enabled: false, //todo remember to switch this back to [!releaseMode]
+      enabled:
+          kProfileMode, //todo remember to switch this back to [!releaseMode]
       builder: (context) => MyApp(),
     ),
   );
