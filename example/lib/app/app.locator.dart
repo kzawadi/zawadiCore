@@ -11,6 +11,7 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../pages/news/view_model.dart/news_viewmodel.dart';
+import '../services/environment_service.dart';
 import '../services/news_services.dart';
 
 final locator = StackedLocator.instance;
@@ -24,4 +25,5 @@ void setupLocator({String? environment, EnvironmentFilter? environmentFilter}) {
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => NewsService());
   locator.registerLazySingleton(() => NewsViewModel());
+  locator.registerLazySingleton(() => EnvironmentService());
 }

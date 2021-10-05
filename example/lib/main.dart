@@ -12,8 +12,7 @@ Future<void> main() async {
   setupLocator();
   runApp(
     DevicePreview(
-      enabled:
-          kProfileMode, //todo remember to switch this back to [!releaseMode]
+      enabled: true, //todo remember to switch this back to [!releaseMode]
       builder: (context) => MyApp(),
     ),
   );

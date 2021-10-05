@@ -25,6 +25,7 @@ dependencies:
   auto_size_text: ^3.0.0-nullsafety.0
   logger: 
   url_launcher: ^6.0.12
+  flutter_dotenv: ^5.0.2
 
 
 dev_dependencies:
@@ -34,6 +35,8 @@ dev_dependencies:
   stacked_generator:
 
 flutter:
+  assets:
+    - .env
 
   uses-material-design: true
 
