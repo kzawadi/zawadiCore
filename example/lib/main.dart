@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
       title: "",
       primaryLightColor: Colors.teal,
       primaryDarkColor: Colors.teal,
+      locale: DevicePreview.locale(context), // Add the locale here
       builder: DevicePreview.appBuilder, // Add the builder here
 
       navigatorKey: StackedService.navigatorKey,
