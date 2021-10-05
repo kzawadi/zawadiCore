@@ -1,6 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:zawadi_design/app/app.logger.dart';
-import 'package:zawadi_design/constants/app_keys.dart';
 
 /// Returns values from the environment read from the .env file
 class EnvironmentService {

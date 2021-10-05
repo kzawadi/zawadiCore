@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zawadi_design/app/app.locator.dart';
-import 'package:zawadi_design/models/article_model.dart';
 import 'package:zawadi_design/models/source.dart';
 import 'package:zawadi_design/pages/news/view_model.dart/news_viewmodel.dart';
 
