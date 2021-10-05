@@ -8,7 +8,7 @@ ThemeData zawadiLightTheme() {
   return base.copyWith(
     textTheme: MobileTextTheme.theme(base),
     primaryIconTheme: IconThemeData(size: 24, color: ZawadiColors.iconPrimary),
-    accentIconTheme: IconThemeData(size: 24, color: ZawadiColors.iconPrimary),
+    // accentIconTheme: IconThemeData(size: 24, color: ZawadiColors.iconPrimary),
     dividerTheme: DividerThemeData(
       space: 0,
       thickness: 0.5,
@@ -119,7 +119,7 @@ ThemeData zawadiLightTheme() {
     appBarTheme: AppBarTheme(
       color: ZawadiColors.transparent,
       foregroundColor: ZawadiColors.transparent,
-      textTheme: MobileTextTheme.theme(base),
+      // textTheme: MobileTextTheme.theme(base),
       elevation: 0.0,
     ),
     colorScheme: ZawadiColors.colorScheme,

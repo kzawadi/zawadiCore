@@ -27,6 +27,7 @@ export 'config/constants.dart';
 export 'responsive/orientation_layout.dart';
 export 'responsive/responsive_builder.dart';
 export 'responsive/screen_type_layout.dart';
+export 'utils/ui_helpers.dart';
 
 // Assets
 export 'assets/icons/iconly_icon.dart';

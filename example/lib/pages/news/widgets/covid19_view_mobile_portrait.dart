@@ -3,7 +3,8 @@ import 'package:designsys/designsys.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
-import 'package:zawadi_design/pages/news/view_model.dart/covid19_viewmodel.dart';
+import 'package:zawadi_design/app/app.locator.dart';
+import 'package:zawadi_design/pages/news/view_model.dart/news_viewmodel.dart';
 import 'package:zawadi_design/pages/news/widgets/article_grid.dart';
 import 'package:zawadi_design/pages/news/widgets/articles_list.dart';
 
@@ -11,9 +12,9 @@ import 'package:zawadi_design/pages/news/widgets/articles_list.dart';
 ///it contains a first larger and five medium card and lastly
 ///small grid arranged cards
 ///all this are in [CustomScrollView]
-///This page initiate its own ViewModel Controller which extends
-///a future viewModel which upon firing of this page the
-///[model.futureToRun] get excuted and return a [List of Articles]
+///This page uses an already fired ViewModel Controller which extends
+///a [multipleFutureViewModel] which upon firing of this page the
+///[model.futuresMap] is already fired so it return a [List of Articles]
 ///which is passed to the card in this page
 
 class Covid19ViewMobilePortrait extends StatelessWidget {
@@ -21,15 +22,20 @@ class Covid19ViewMobilePortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<Covid19ViewModel>.reactive(
-      onModelReady: (model) => model.futureToRun,
+    return ViewModelBuilder<NewsViewModel>.reactive(
+      // onModelReady: (model) => model.futureToRun,
+      initialiseSpecialViewModelsOnce: true,
+
+      disposeViewModel: false,
+      fireOnModelReadyOnce: true,
+
       builder: (context, model, child) => Covid19MobilePortraitContents(),
-      viewModelBuilder: () => Covid19ViewModel(),
+      viewModelBuilder: () => locator<NewsViewModel>(),
     );
   }
 }
 
-class Covid19MobilePortraitContents extends ViewModelWidget<Covid19ViewModel> {
+class Covid19MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
   Widget _header(BuildContext context) {
     return SliverAppBar(
       floating: true,
@@ -55,8 +61,8 @@ class Covid19MobilePortraitContents extends ViewModelWidget<Covid19ViewModel> {
   }
 
   @override
-  Widget build(BuildContext context, Covid19ViewModel viewModel) {
-    return viewModel.isBusy
+  Widget build(BuildContext context, NewsViewModel viewModel) {
+    return !viewModel.dataReady("covidArticles")
         ? Loading(
             backgroundColor: Colors.brown[100],
           )
@@ -71,8 +77,8 @@ class Covid19MobilePortraitContents extends ViewModelWidget<Covid19ViewModel> {
                     // return await context.refresh(newsCOVID19Provider);
                   },
                 ),
-                ArticleList(viewModel.data!, false, false),
-                ArticleGrid(viewModel.data!, false),
+                ArticleList(viewModel.dataMap!["covidArticles"], false, false),
+                ArticleGrid(viewModel.dataMap!["covidArticles"], false),
               ],
             ),
           );

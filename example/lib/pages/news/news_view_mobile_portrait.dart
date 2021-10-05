@@ -3,9 +3,11 @@ import 'package:designsys/designsys.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
+import 'package:zawadi_design/app/app.locator.dart';
 import 'package:zawadi_design/pages/news/view_model.dart/news_viewmodel.dart';
 import 'package:zawadi_design/pages/news/widgets/article_grid.dart';
 import 'package:zawadi_design/pages/news/widgets/articles_list.dart';
+import 'package:zawadi_design/pages/news_source_view/sources_view.dart';
 
 class NewsViewMobilePortrait extends StatelessWidget {
   const NewsViewMobilePortrait({Key? key}) : super(key: key);
@@ -13,9 +15,12 @@ class NewsViewMobilePortrait extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<NewsViewModel>.reactive(
-      onModelReady: (model) => model.futureToRun,
+      disposeViewModel: false,
+      fireOnModelReadyOnce: true,
+      initialiseSpecialViewModelsOnce: true,
+      onModelReady: (model) => model.futuresMap,
       builder: (context, model, child) => MobilePortraitContents(),
-      viewModelBuilder: () => NewsViewModel(),
+      viewModelBuilder: () => locator<NewsViewModel>(),
     );
   }
 }
@@ -46,16 +51,15 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
           size: 25,
           color: Theme.of(context).primaryColor,
         ),
-        onPressed: () {
-          // return ZawadiMethods.viewTransition(context, CategoryListView());
-        },
+        onPressed: () =>
+            ZawadiMethods.viewTransition(context, SourcesViewPage()),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context, viewModel) {
-    return viewModel.isBusy
+    return !viewModel.dataReady("articles")
         ? Loading(
             backgroundColor: Colors.brown[100],
           )
@@ -70,8 +74,8 @@ class MobilePortraitContents extends ViewModelWidget<NewsViewModel> {
                     // return await context.refresh(newsFutureProvider);
                   },
                 ),
-                ArticleList(viewModel.data!, true, false),
-                ArticleGrid(viewModel.data!, false)
+                ArticleList(viewModel.dataMap!["articles"], true, false),
+                ArticleGrid(viewModel.dataMap!["articles"], false)
               ],
             ),
           );

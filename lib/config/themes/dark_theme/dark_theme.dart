@@ -116,7 +116,7 @@ ThemeData zawadiDarkTheme() {
     appBarTheme: AppBarTheme(
       color: ZawadiColors.transparent,
       foregroundColor: ZawadiColors.transparent,
-      textTheme: MobileTextTheme.theme(base),
+      // textTheme: MobileTextTheme.theme(base),
       elevation: 0.0,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(

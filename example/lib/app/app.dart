@@ -5,6 +5,7 @@ import 'package:zawadi_design/pages/news/main_news.dart';
 import 'package:zawadi_design/pages/news/news_view_mobile_portrait.dart';
 import 'package:zawadi_design/pages/news/view_model.dart/news_viewmodel.dart';
 import 'package:zawadi_design/pages/startup/startup_view.dart';
+import 'package:zawadi_design/services/environment_service.dart';
 import 'package:zawadi_design/services/news_services.dart';
 
 @StackedApp(
@@ -22,6 +23,7 @@ import 'package:zawadi_design/services/news_services.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: NewsService),
     LazySingleton(classType: NewsViewModel),
+    LazySingleton(classType: EnvironmentService),
   ],
   logger: StackedLogger(),
 )

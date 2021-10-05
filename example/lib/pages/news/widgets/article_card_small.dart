@@ -4,6 +4,7 @@ import 'package:designsys/designsys.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zawadi_design/models/article_model.dart';
 import 'package:zawadi_design/pages/news/widgets/article_view.dart';
+import 'package:zawadi_design/ui/web_assets.dart';
 
 ///The small of all which mainly its layout is more vertical and the last in
 ///stack of the front page
@@ -11,7 +12,7 @@ class ArticleCardSmall extends StatelessWidget {
   const ArticleCardSmall(this.article, this.source);
 
   @required
-  final Article article;
+  final Article? article;
 
   final bool source;
 
@@ -39,7 +40,7 @@ class ArticleCardSmall extends StatelessWidget {
             ClipSquircleBorder(
               radius: BorderRadius.circular(45),
               child: CachedNetworkImage(
-                imageUrl: article.getImageUrl,
+                imageUrl: article?.getImageUrl ?? WebAssets().dummyImage,
                 fit: BoxFit.cover,
                 height: 125,
                 placeholder: (context, url) => Loading(
@@ -54,7 +55,7 @@ class ArticleCardSmall extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AutoSizeText(
-                    article.name!,
+                    article?.name ?? '',
                     style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: Theme.of(context).primaryColor,
                           fontWeight: FontWeight.w500,
@@ -64,7 +65,7 @@ class ArticleCardSmall extends StatelessWidget {
                     maxFontSize: 16,
                   ),
                   AutoSizeText(
-                    shortenLengthenOfTitle(article.title!),
+                    shortenLengthenOfTitle(article?.title ?? ''),
                     style: GoogleFonts.notoSans(
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
@@ -80,7 +81,7 @@ class ArticleCardSmall extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10),
               child: AutoSizeText(
-                article.getPublishedAtFormattedTime,
+                article?.getPublishedAtFormattedTime ?? '',
                 style: Theme.of(context).textTheme.caption!.copyWith(
                       color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.w400,

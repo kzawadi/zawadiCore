@@ -9,7 +9,7 @@ class NewsViewMobileLandscape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<NewsViewModel>.reactive(
-      onModelReady: (model) => model.futureToRun,
+      onModelReady: (model) => model.futuresMap,
       viewModelBuilder: () => NewsViewModel(),
       builder: (context, model, child) => ZawadiScaffold(
         appBar: AppBar(
@@ -22,8 +22,9 @@ class NewsViewMobileLandscape extends StatelessWidget {
         body: Center(
           child: model.isBusy
               ? Loading()
-              : Text(
-                  model.dataReady ? model.data!.first.content! : "NO DATA YET"),
+              : Text(model.dataReady("articles")
+                  ? model.dataMap!["articles"].first.content!
+                  : "NO DATA YET"),
         ),
       ),
     );
