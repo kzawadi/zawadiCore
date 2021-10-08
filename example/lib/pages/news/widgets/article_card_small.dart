@@ -58,7 +58,7 @@ class ArticleCardSmall extends StatelessWidget {
                     article?.name ?? '',
                     style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: Theme.of(context).primaryColor,
-                          fontWeight: FontWeight.w500,
+                          fontStyle: FontStyle.italic,
                         ),
                     minFontSize: 8,
                     maxLines: 1,

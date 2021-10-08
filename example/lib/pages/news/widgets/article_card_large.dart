@@ -29,37 +29,60 @@ class ArticleCardLarge extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Expanded(
-              child: ClipSquircleBorder(
-                radius: BorderRadius.all(Radius.circular(25)),
-                child: CachedNetworkImage(
-                  imageUrl: article?.getImageUrl ?? WebAssets().dummyImage,
-                  fit: BoxFit.cover,
-                  height: 200,
-                  placeholder: (context, url) => Loading(
-                    color: Theme.of(context).primaryColor,
+            ClipSquircleBorder(
+              radius: BorderRadius.all(Radius.circular(25)),
+              child: CachedNetworkImage(
+                imageUrl: article?.urlToImage ?? WebAssets().dummyImage,
+                fit: BoxFit.cover,
+                height: 200,
+                placeholder: (context, url) => Loading(
+                  color: Theme.of(context).primaryColor,
+                ),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                  child: AutoSizeText(
+                    article?.name ?? "",
+                    style: GoogleFonts.notoSans(
+                      textStyle:
+                          Theme.of(context).textTheme.bodyText2!.copyWith(
+                                color: Theme.of(context).primaryColor,
+                                fontStyle: FontStyle.italic,
+                              ),
+                      fontSize: 12,
+                    ),
+                    minFontSize: 12,
+                    maxFontSize: 16,
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-              ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+                  child: AutoSizeText(
+                    article?.getPublishedAtFormattedTime ?? '00:00:00:00',
+                    style: Theme.of(context).textTheme.caption!.copyWith(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                        ),
+                    minFontSize: 12,
+                    maxFontSize: 16,
+                    maxLines: 1,
+                  ),
+                ),
+              ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+              padding: const EdgeInsets.only(left: 8, bottom: 10),
               child: AutoSizeText(
-                article?.name ?? "",
-                style: GoogleFonts.notoSans(
-                  textStyle: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        color: Theme.of(context).primaryColor,
-                      ),
-                ),
-                minFontSize: 12,
-                maxFontSize: 16,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Text(
                 !source
                     ? article?.title ??
                         "".substring(0, article?.title!.indexOf(' - '))
@@ -69,16 +92,10 @@ class ArticleCardLarge extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
-              child: AutoSizeText(
-                article?.getPublishedAtFormattedTime ?? '00:00:00:00',
-                style: Theme.of(context).textTheme.caption!.copyWith(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.w400,
-                    ),
+                minFontSize: 19,
+                maxFontSize: 22,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
               ),
             ),
           ],
