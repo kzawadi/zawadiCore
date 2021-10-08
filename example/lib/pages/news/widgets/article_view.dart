@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:designsys/designsys.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -36,6 +37,31 @@ class ArticleView extends StatelessWidget {
       leading: ZawadiBackButton(
         iconColor: true,
       ),
+      actions: <Widget>[
+        ZawadiActionButton(
+          icon: Icon(
+            CupertinoIcons.textformat_size,
+            color: Theme.of(context).primaryColor,
+            size: 25,
+          ),
+          onPressed: () {},
+        ),
+        Responsive.isTablet(context)
+            ? Icon(
+                CupertinoIcons.bookmark,
+                color: Theme.of(context).primaryColor,
+                size: 25,
+              )
+            : SizedBox(),
+        ZawadiActionButton(
+          icon: Icon(
+            CupertinoIcons.share_up,
+            color: Theme.of(context).primaryColor,
+            size: 25,
+          ),
+          onPressed: () {},
+        )
+      ],
       centerTitle: true,
     );
   }
@@ -44,8 +70,9 @@ class ArticleView extends StatelessWidget {
     return Column(
       children: <Widget>[
         Padding(
-          padding:
-              const EdgeInsets.only(left: 12, right: 12, top: 10, bottom: 10),
+          padding: Responsive.isTablet(context)
+              ? const EdgeInsets.only(left: 150, right: 150)
+              : const EdgeInsets.only(left: 15, right: 15),
           child: AutoSizeText(
             !source
                 ? article?.title ??
@@ -133,7 +160,9 @@ class ArticleView extends StatelessWidget {
 
   Widget _body(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 12, right: 12, bottom: 30),
+      padding: Responsive.isTablet(context)
+          ? EdgeInsets.only(left: 150, right: 150)
+          : EdgeInsets.only(left: 14, right: 14),
       child: Column(
         children: [
           AutoSizeText(
@@ -173,7 +202,9 @@ class ArticleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ZawadiScaffold(
-      // padding: EdgeInsets.all(0),
+      // padding: Responsive.isTablet(context)
+      //     ? EdgeInsets.only(left: 150, right: 150)
+      //     : EdgeInsets.only(left: 14, right: 14),
       backgroundColor: Colors.orange[50],
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
@@ -186,6 +217,56 @@ class ArticleView extends StatelessWidget {
             ]),
           )
         ],
+      ),
+      bottomNavBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            label: "",
+            icon: ZawadiActionButton(
+              icon: IconlyIcon(
+                IconlyLine.Upload,
+                size: 25,
+                color: Theme.of(context).primaryColor,
+              ),
+              onPressed: () {},
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "",
+            icon: ZawadiActionButton(
+              icon: IconlyIcon(
+                IconlyLine.Upload,
+                size: 25,
+                color: Theme.of(context).primaryColor,
+              ),
+              onPressed: () {},
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "",
+            icon: ZawadiActionButton(
+              icon: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Icon(
+                  //   CupertinoIcons.textformat_size,
+                  //   color: Colors.white,
+                  //   size: 24,
+                  // ),
+                  IconlyIcon(
+                    IconlyLine.ArrowRight1,
+                    size: 25,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ],
+              ),
+              onPressed: () {},
+            ),
+          )
+        ],
+        backgroundColor: Colors.transparent,
+        type: BottomNavigationBarType.fixed,
+        landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
       ),
     );
     // );
