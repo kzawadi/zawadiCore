@@ -27,18 +27,21 @@ class ArticleCardLarge extends StatelessWidget {
         shape:
             const SquircleBorder(radius: BorderRadius.all(Radius.circular(25))),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ClipSquircleBorder(
-              radius: BorderRadius.all(Radius.circular(25)),
-              child: CachedNetworkImage(
-                imageUrl: article?.getImageUrl ?? WebAssets().dummyImage,
-                fit: BoxFit.cover,
-                height: 200,
-                placeholder: (context, url) => Loading(
-                  color: Theme.of(context).primaryColor,
+            Expanded(
+              child: ClipSquircleBorder(
+                radius: BorderRadius.all(Radius.circular(25)),
+                child: CachedNetworkImage(
+                  imageUrl: article?.getImageUrl ?? WebAssets().dummyImage,
+                  fit: BoxFit.cover,
+                  height: 200,
+                  placeholder: (context, url) => Loading(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
             Padding(
@@ -70,7 +73,7 @@ class ArticleCardLarge extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
-              child: Text(
+              child: AutoSizeText(
                 article?.getPublishedAtFormattedTime ?? '00:00:00:00',
                 style: Theme.of(context).textTheme.caption!.copyWith(
                       color: Theme.of(context).primaryColor,

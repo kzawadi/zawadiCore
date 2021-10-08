@@ -7,6 +7,7 @@ import 'package:stacked/stacked.dart';
 import 'package:zawadi_design/app/app.locator.dart';
 import 'package:zawadi_design/pages/news/view_model.dart/news_viewmodel.dart';
 import 'package:zawadi_design/pages/news/widgets/articles_list.dart';
+import 'package:zawadi_design/pages/news/widgets/tablet/article_list_tablet.dart';
 
 class NewsViewTablet extends StatelessWidget {
   const NewsViewTablet({Key? key}) : super(key: key);
@@ -76,9 +77,10 @@ class NewsViewTabletContents extends ViewModelWidget<NewsViewModel> {
                   },
                 ),
                 // Container(color: Colors.amber)
-                ArticleList(viewModel.dataMap!["articles"], true, false),
+                ArticleListTablet(viewModel.dataMap!["articles"], true, false),
                 // ArticleGrid(viewModel.dataMap!["articles"], false)
               ],
+              shrinkWrap: true,
             ),
           );
   }
