@@ -2,13 +2,11 @@ import 'package:designsys/enums/device_screen_type.dart';
 import 'package:flutter/widgets.dart';
 
 DeviceScreenType getDeviceType(MediaQueryData mediaQuery) {
-  double deviceWidth = mediaQuery.size.shortestSide;
+  double deviceWidth = mediaQuery.size.width;
 
-  if (deviceWidth > 950) {
+  if (deviceWidth >= 1200) {
     return DeviceScreenType.Desktop;
-  }
-
-  if (deviceWidth > 600) {
+  } else if (deviceWidth >= 768) {
     return DeviceScreenType.Tablet;
   }
 
