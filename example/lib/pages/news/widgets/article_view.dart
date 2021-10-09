@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zawadi_design/models/article_model.dart';
+import 'package:zawadi_design/pages/news/widgets/side_menu.dart';
 import 'package:zawadi_design/ui/web_assets.dart';
 
 ///Its called article view but also can be news view or details view
@@ -34,8 +35,26 @@ class ArticleView extends StatelessWidget {
         maxFontSize: 22,
         minFontSize: 15,
       ),
-      leading: ZawadiBackButton(
-        iconColor: true,
+      leading: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Icon(
+            CupertinoIcons.back,
+            color: Theme.of(context).primaryColor,
+            size: 25,
+          ),
+          SizedBox(width: 6),
+          Responsive.isTablet(context)
+              ? GestureDetector(
+                  onTap: () => Scaffold.of(context).openDrawer(),
+                  child: Icon(
+                    CupertinoIcons.sidebar_left,
+                    color: Theme.of(context).primaryColor,
+                    size: 25,
+                  ),
+                )
+              : SizedBox(),
+        ],
       ),
       actions: <Widget>[
         ZawadiActionButton(
@@ -202,9 +221,7 @@ class ArticleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ZawadiScaffold(
-      // padding: Responsive.isTablet(context)
-      //     ? EdgeInsets.only(left: 150, right: 150)
-      //     : EdgeInsets.only(left: 14, right: 14),
+      drawer: SideMenu(),
       backgroundColor: Colors.orange[50],
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
