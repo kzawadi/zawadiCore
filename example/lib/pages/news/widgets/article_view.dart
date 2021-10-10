@@ -13,76 +13,79 @@ import 'package:zawadi_design/ui/web_assets.dart';
 ///this page display the selected news in details
 ///functionaly it take [Article] and [source] as a required arguments.
 class ArticleView extends StatelessWidget {
-  const ArticleView(this.article, this.source) : super();
+  ArticleView(this.article, this.source) : super();
 
   final Article? article;
   final bool source;
+  // final globalKey = GlobalKey<ScaffoldState>();
 
   Widget _header(BuildContext context) {
-    return SliverAppBar(
-      floating: true,
-      elevation: 0,
-      backgroundColor: Colors.orange[50],
-      title: AutoSizeText(
-        article?.name ?? 'News',
-        style: GoogleFonts.nunito(
-          textStyle: Theme.of(context).textTheme.headline6!.copyWith(
-                color: Theme.of(context).primaryColor,
-              ),
-          fontWeight: FontWeight.w900,
-          fontSize: 25,
-        ),
-        maxFontSize: 22,
-        minFontSize: 15,
-      ),
-      leading: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Icon(
-            CupertinoIcons.back,
-            color: Theme.of(context).primaryColor,
-            size: 25,
+    return Builder(builder: (context) {
+      return SliverAppBar(
+        floating: true,
+        elevation: 0,
+        backgroundColor: Colors.orange[50],
+        title: AutoSizeText(
+          article?.name ?? 'News',
+          style: GoogleFonts.nunito(
+            textStyle: Theme.of(context).textTheme.headline6!.copyWith(
+                  color: Theme.of(context).primaryColor,
+                ),
+            fontWeight: FontWeight.w900,
+            fontSize: 25,
           ),
-          SizedBox(width: 6),
+          maxFontSize: 22,
+          minFontSize: 15,
+        ),
+        leading: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(
+              CupertinoIcons.back,
+              color: Theme.of(context).primaryColor,
+              size: 25,
+            ),
+            SizedBox(width: 6),
+            Responsive.isTablet(context)
+                ? GestureDetector(
+                    onTap: () => Scaffold.of(context).openDrawer(),
+                    child: Icon(
+                      CupertinoIcons.sidebar_left,
+                      color: Theme.of(context).primaryColor,
+                      size: 25,
+                    ),
+                  )
+                : SizedBox(),
+          ],
+        ),
+        actions: <Widget>[
+          ZawadiActionButton(
+            icon: Icon(
+              CupertinoIcons.textformat_size,
+              color: Theme.of(context).primaryColor,
+              size: 25,
+            ),
+            onPressed: () {},
+          ),
           Responsive.isTablet(context)
-              ? GestureDetector(
-                  onTap: () => Scaffold.of(context).openDrawer(),
-                  child: Icon(
-                    CupertinoIcons.sidebar_left,
-                    color: Theme.of(context).primaryColor,
-                    size: 25,
-                  ),
+              ? Icon(
+                  CupertinoIcons.bookmark,
+                  color: Theme.of(context).primaryColor,
+                  size: 25,
                 )
               : SizedBox(),
+          ZawadiActionButton(
+            icon: Icon(
+              CupertinoIcons.share_up,
+              color: Theme.of(context).primaryColor,
+              size: 25,
+            ),
+            onPressed: () {},
+          )
         ],
-      ),
-      actions: <Widget>[
-        ZawadiActionButton(
-          icon: Icon(
-            CupertinoIcons.textformat_size,
-            color: Theme.of(context).primaryColor,
-            size: 25,
-          ),
-          onPressed: () {},
-        ),
-        Responsive.isTablet(context)
-            ? Icon(
-                CupertinoIcons.bookmark,
-                color: Theme.of(context).primaryColor,
-                size: 25,
-              )
-            : SizedBox(),
-        ZawadiActionButton(
-          icon: Icon(
-            CupertinoIcons.share_up,
-            color: Theme.of(context).primaryColor,
-            size: 25,
-          ),
-          onPressed: () {},
-        )
-      ],
-      centerTitle: true,
-    );
+        centerTitle: true,
+      );
+    });
   }
 
   Widget _description(BuildContext context) {
@@ -221,6 +224,7 @@ class ArticleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ZawadiScaffold(
+      // key: globalKey,
       drawer: SideMenu(),
       backgroundColor: Colors.orange[50],
       body: CustomScrollView(
