@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:designsys/designsys.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,17 +36,20 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
         //   backgroundColor: Colors.brown[100],
         // body:
         viewModel.dataReady("sources")
-            ? Drawer(
-                child: CustomScrollView(
-                  slivers: [
-                    _header(context),
-                    CupertinoSliverRefreshControl(
-                      onRefresh: () async {
-                        // return await context.refresh(newsSourcesProvider);
-                      },
-                    ),
-                    _sourcesList(context, viewModel.dataMap!["sources"]),
-                  ],
+            ? Scaffold(
+                backgroundColor: Colors.brown[100],
+                body: Container(
+                  child: CustomScrollView(
+                    slivers: [
+                      _header(context),
+                      CupertinoSliverRefreshControl(
+                        onRefresh: () async {
+                          // return await context.refresh(newsSourcesProvider);
+                        },
+                      ),
+                      _sourcesList(context, viewModel.dataMap!["sources"]),
+                    ],
+                  ),
                 ),
               )
             : Loading(backgroundColor: Colors.brown[100]);
@@ -68,9 +73,9 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
         maxFontSize: 22,
         minFontSize: 15,
       ),
-      leading: ZawadiBackButton(
-        iconColor: true,
-      ),
+      // leading: ZawadiBackButton(
+      //   iconColor: true,
+      // ),
       centerTitle: true,
     );
   }
