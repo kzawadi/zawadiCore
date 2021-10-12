@@ -1,8 +1,7 @@
-import 'dart:ui' as ui;
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:designsys/designsys.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:glassmorphism/glassmorphism.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,6 +9,10 @@ import 'package:zawadi_design/app/app.locator.dart';
 import 'package:zawadi_design/models/source.dart';
 import 'package:zawadi_design/pages/news/view_model.dart/news_viewmodel.dart';
 
+///This widget is constrained in width by 240 so any children
+///widget should take note that constraint
+///very like it wont show an error becouse that widgets will be layed out but
+///not in visible part greater than [mediaQuery.width =>240]
 class SourcesViewPage extends StatelessWidget {
   const SourcesViewPage({Key? key}) : super(key: key);
 
@@ -37,69 +40,101 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
         // body:
         viewModel.dataReady("sources")
             ? Scaffold(
-                backgroundColor: Colors.brown[100],
                 body: Container(
-                  child: CustomScrollView(
-                    slivers: [
-                      _header(context),
-                      CupertinoSliverRefreshControl(
-                        onRefresh: () async {
-                          // return await context.refresh(newsSourcesProvider);
-                        },
+                  height: double.infinity,
+                  width: double.infinity,
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      Image.network(
+                        "https://github.com/RitickSaha/glassmophism/blob/master/example/assets/bg.png?raw=true",
+                        fit: BoxFit.cover,
+                        height: screenHeight(context),
+                        width: 240,
+                        scale: 1,
                       ),
-                      _sourcesList(context, viewModel.dataMap!["sources"]),
+                      GlassmorphicContainer(
+                        width: 240,
+                        height: screenHeight(context),
+                        borderRadius: 0,
+                        blur: 20,
+                        alignment: Alignment.bottomCenter,
+                        border: 0.2,
+                        linearGradient: LinearGradient(
+                            begin: Alignment.center,
+                            end: Alignment.center,
+                            colors: [
+                              Color(0xFFffffff).withOpacity(0.1),
+                              Color(0xFFFFFFFF).withOpacity(0.05),
+                            ],
+                            stops: [
+                              0.1,
+                              1,
+                            ]),
+                        borderGradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color(0xFFffffff).withOpacity(0.5),
+                            Color((0xFFFFFFFF)).withOpacity(0.5),
+                          ],
+                        ),
+                        child: _sourcesList(
+                          context,
+                          viewModel.dataMap!["sources"],
+                        ),
+                      ),
                     ],
                   ),
                 ),
               )
             : Loading(backgroundColor: Colors.brown[100]);
-    // );
   }
 
   Widget _header(BuildContext context) {
-    return SliverAppBar(
-      floating: true,
-      elevation: 0,
-      backgroundColor: Colors.brown[100],
-      title: AutoSizeText(
-        "Sources",
-        style: GoogleFonts.nunito(
-          textStyle: Theme.of(context).textTheme.headline6!.copyWith(
-                color: Theme.of(context).primaryColor,
-              ),
-          fontWeight: FontWeight.w900,
-          fontSize: 25,
-        ),
-        maxFontSize: 22,
-        minFontSize: 15,
+    return AutoSizeText(
+      "Sources",
+      style: GoogleFonts.nunito(
+        textStyle: Theme.of(context).textTheme.headline6!.copyWith(
+              color: Theme.of(context).primaryColor,
+            ),
+        fontWeight: FontWeight.w900,
+        fontSize: 25,
       ),
-      // leading: ZawadiBackButton(
-      //   iconColor: true,
-      // ),
-      centerTitle: true,
+      maxFontSize: 22,
+      minFontSize: 15,
     );
   }
 
   Widget _sourcesList(BuildContext context, List<Source> sources) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          if (sources.length != 0) {
-            return SourceTile(source: sources[index]);
-          } else {
-            Center(
-              child: Text(
-                'Error :(',
-                style: Theme.of(context).textTheme.headline5!.copyWith(
-                      color: Theme.of(context).colorScheme.secondaryVariant,
-                    ),
-              ),
-            );
-          }
-          return Container();
-        },
-        childCount: sources.length,
-      ),
+    return ListView(
+      // itemExtent: 3,
+      children: [
+        SizedBox(height: 60),
+        Center(child: _header(context)),
+        SizedBox(height: 0),
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: sources.length,
+          itemBuilder: (context, index) {
+            if (sources.isNotEmpty) {
+              return SourceTile(
+                source: sources[index],
+              );
+            } else {
+              Center(
+                child: Text(
+                  'Error :(',
+                  style: Theme.of(context).textTheme.headline5!.copyWith(
+                        color: Theme.of(context).colorScheme.secondaryVariant,
+                      ),
+                ),
+              );
+            }
+            return Container();
+          },
+        ),
+      ],
     );
   }
 }
@@ -131,7 +166,7 @@ class SourceTile extends StatelessWidget {
           source?.name ?? '',
           style: GoogleFonts.notoSerif(
             textStyle: Theme.of(context).textTheme.headline6,
-            color: Colors.black,
+            color: Colors.tealAccent[700],
           ),
           minFontSize: 16,
           maxFontSize: 18,
@@ -141,7 +176,7 @@ class SourceTile extends StatelessWidget {
           child: AutoSizeText(
             source!.name!.substring(0, 1),
             style: Theme.of(context).textTheme.headline5!.copyWith(
-                  color: Colors.black,
+                  color: Colors.brown,
                 ),
           ),
         ),
@@ -181,3 +216,60 @@ class SourceTile extends StatelessWidget {
     );
   }
 }
+//todo ... migrate this to the UI package
+// class OverLayIssue extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: () {
+//           Overlay.of(context)!.insert(_getEntry(context));
+//         },
+//       ),
+//       body: Stack(
+//         fit: StackFit.expand,
+//         children: <Widget>[
+//           Text('0' * 10000),
+//         ],
+//       ),
+//     );
+//   }
+
+//   OverlayEntry _getEntry(context) {
+//     OverlayEntry? entry;
+
+//     entry = OverlayEntry(
+//       opaque: false,
+//       maintainState: true,
+//       builder: (_) => Positioned(
+//         left: 100,
+//         bottom: 100,
+//         width: MediaQuery.of(context).size.width,
+//         height: MediaQuery.of(context).size.height,
+//         child: BackdropFilter(
+//           filter: ui.ImageFilter.blur(
+//             sigmaX: 2,
+//             sigmaY: 2,
+//           ),
+//           child: Material(
+//             type: MaterialType.transparency,
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: <Widget>[
+//                 Container(
+//                   width: 200,
+//                   height: 200,
+//                   color: Colors.red,
+//                   child: Text('Hello world'),
+//                 ),
+//                 RaisedButton(onPressed: () => entry!.remove())
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//     return entry;
+//   }
+// }

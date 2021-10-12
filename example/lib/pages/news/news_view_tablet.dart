@@ -15,6 +15,7 @@ class NewsViewTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SplitViewer(
+      menuWidth: 240,
       menu: SourcesViewPage(),
       content: ViewModelBuilder<NewsViewModel>.reactive(
         disposeViewModel: false,
