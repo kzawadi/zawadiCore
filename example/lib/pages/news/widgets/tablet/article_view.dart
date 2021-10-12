@@ -1,100 +1,51 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:designsys/designsys.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zawadi_design/models/article_model.dart';
-import 'package:zawadi_design/pages/news/widgets/side_menu.dart';
 import 'package:zawadi_design/ui/web_assets.dart';
 
 ///Its called article view but also can be news view or details view
 ///this page display the selected news in details
 ///functionaly it take [Article] and [source] as a required arguments.
 class ArticleView extends StatelessWidget {
-  ArticleView(this.article, this.source) : super();
+  const ArticleView(this.article, this.source) : super();
 
   final Article? article;
   final bool source;
-  // final globalKey = GlobalKey<ScaffoldState>();
 
   Widget _header(BuildContext context) {
-    return Builder(builder: (context) {
-      return SliverAppBar(
-        floating: true,
-        elevation: 0,
-        backgroundColor: Colors.orange[50],
-        title: AutoSizeText(
-          article?.name ?? 'News',
-          style: GoogleFonts.nunito(
-            textStyle: Theme.of(context).textTheme.headline6!.copyWith(
-                  color: Theme.of(context).primaryColor,
-                ),
-            fontWeight: FontWeight.w900,
-            fontSize: 25,
-          ),
-          maxFontSize: 22,
-          minFontSize: 15,
+    return SliverAppBar(
+      floating: true,
+      elevation: 0,
+      backgroundColor: Colors.orange[50],
+      title: AutoSizeText(
+        article?.name ?? 'News',
+        style: GoogleFonts.nunito(
+          textStyle: Theme.of(context).textTheme.headline6!.copyWith(
+                color: Theme.of(context).primaryColor,
+              ),
+          fontWeight: FontWeight.w900,
+          fontSize: 25,
         ),
-        leading: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Icon(
-              CupertinoIcons.back,
-              color: Theme.of(context).primaryColor,
-              size: 25,
-            ),
-            SizedBox(width: 6),
-            Responsive.isTablet(context)
-                ? GestureDetector(
-                    onTap: () => Scaffold.of(context).openDrawer(),
-                    child: Icon(
-                      CupertinoIcons.sidebar_left,
-                      color: Theme.of(context).primaryColor,
-                      size: 25,
-                    ),
-                  )
-                : SizedBox(),
-          ],
-        ),
-        actions: <Widget>[
-          ZawadiActionButton(
-            icon: Icon(
-              CupertinoIcons.textformat_size,
-              color: Theme.of(context).primaryColor,
-              size: 25,
-            ),
-            onPressed: () {},
-          ),
-          Responsive.isTablet(context)
-              ? Icon(
-                  CupertinoIcons.bookmark,
-                  color: Theme.of(context).primaryColor,
-                  size: 25,
-                )
-              : SizedBox(),
-          ZawadiActionButton(
-            icon: Icon(
-              CupertinoIcons.share_up,
-              color: Theme.of(context).primaryColor,
-              size: 25,
-            ),
-            onPressed: () {},
-          )
-        ],
-        centerTitle: true,
-      );
-    });
+        maxFontSize: 22,
+        minFontSize: 15,
+      ),
+      leading: ZawadiBackButton(
+        iconColor: true,
+      ),
+      centerTitle: true,
+    );
   }
 
   Widget _description(BuildContext context) {
     return Column(
       children: <Widget>[
         Padding(
-          padding: Responsive.isTablet(context)
-              ? const EdgeInsets.only(left: 150, right: 150)
-              : const EdgeInsets.only(left: 15, right: 15),
+          padding:
+              const EdgeInsets.only(left: 12, right: 12, top: 10, bottom: 10),
           child: AutoSizeText(
             !source
                 ? article?.title ??
@@ -182,9 +133,7 @@ class ArticleView extends StatelessWidget {
 
   Widget _body(BuildContext context) {
     return Padding(
-      padding: Responsive.isTablet(context)
-          ? EdgeInsets.only(left: 150, right: 150)
-          : EdgeInsets.only(left: 14, right: 14),
+      padding: const EdgeInsets.only(left: 12, right: 12, bottom: 30),
       child: Column(
         children: [
           AutoSizeText(
@@ -224,8 +173,7 @@ class ArticleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ZawadiScaffold(
-      // key: globalKey,
-      drawer: SideMenu(),
+      padding: EdgeInsets.only(left: 60, right: 60),
       backgroundColor: Colors.orange[50],
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
@@ -238,56 +186,6 @@ class ArticleView extends StatelessWidget {
             ]),
           )
         ],
-      ),
-      bottomNavBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            label: "",
-            icon: ZawadiActionButton(
-              icon: IconlyIcon(
-                IconlyLine.Upload,
-                size: 25,
-                color: Theme.of(context).primaryColor,
-              ),
-              onPressed: () {},
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "",
-            icon: ZawadiActionButton(
-              icon: IconlyIcon(
-                IconlyLine.Upload,
-                size: 25,
-                color: Theme.of(context).primaryColor,
-              ),
-              onPressed: () {},
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "",
-            icon: ZawadiActionButton(
-              icon: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // Icon(
-                  //   CupertinoIcons.textformat_size,
-                  //   color: Colors.white,
-                  //   size: 24,
-                  // ),
-                  IconlyIcon(
-                    IconlyLine.ArrowRight1,
-                    size: 25,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ],
-              ),
-              onPressed: () {},
-            ),
-          )
-        ],
-        backgroundColor: Colors.transparent,
-        type: BottomNavigationBarType.fixed,
-        landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
       ),
     );
     // );

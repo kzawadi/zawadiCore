@@ -43,6 +43,7 @@ class ArticleCardMedium extends StatelessWidget {
                           textStyle:
                               Theme.of(context).textTheme.bodyText2!.copyWith(
                                     color: Theme.of(context).primaryColor,
+                                    fontStyle: FontStyle.italic,
                                   ),
                         ),
                         minFontSize: 11,
@@ -70,12 +71,14 @@ class ArticleCardMedium extends StatelessWidget {
                       SizedBox(height: 7),
                       Container(
                         width: MediaQuery.of(context).size.width - 164,
-                        child: Text(
+                        child: AutoSizeText(
                           article?.getPublishedAtFormattedTime ?? '',
                           style: Theme.of(context).textTheme.caption!.copyWith(
                                 color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w400,
                               ),
+                          maxFontSize: 14,
+                          minFontSize: 10,
                         ),
                       ),
                     ],

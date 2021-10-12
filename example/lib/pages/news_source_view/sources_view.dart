@@ -29,22 +29,26 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
-    return ZawadiScaffold(
-      backgroundColor: Colors.brown[100],
-      body: viewModel.dataReady("sources")
-          ? CustomScrollView(
-              slivers: [
-                _header(context),
-                CupertinoSliverRefreshControl(
-                  onRefresh: () async {
-                    // return await context.refresh(newsSourcesProvider);
-                  },
+    return
+        // ZawadiScaffold(
+        //   backgroundColor: Colors.brown[100],
+        // body:
+        viewModel.dataReady("sources")
+            ? Drawer(
+                child: CustomScrollView(
+                  slivers: [
+                    _header(context),
+                    CupertinoSliverRefreshControl(
+                      onRefresh: () async {
+                        // return await context.refresh(newsSourcesProvider);
+                      },
+                    ),
+                    _sourcesList(context, viewModel.dataMap!["sources"]),
+                  ],
                 ),
-                _sourcesList(context, viewModel.dataMap!["sources"]),
-              ],
-            )
-          : Loading(backgroundColor: Colors.brown[100]),
-    );
+              )
+            : Loading(backgroundColor: Colors.brown[100]);
+    // );
   }
 
   Widget _header(BuildContext context) {
