@@ -29,7 +29,8 @@ export 'responsive/responsive_builder.dart';
 export 'responsive/screen_type_layout.dart';
 export 'utils/ui_helpers.dart';
 export 'package:designsys/responsive/responsive.dart';
-
+export 'package:designsys/responsive/split_viewer.dart';
+export 'src/styled_components/view_headers/ios_translucents_headers.dart';
 // Assets
 export 'assets/icons/iconly_icon.dart';
 export 'assets/icons/iconly_bold.dart';

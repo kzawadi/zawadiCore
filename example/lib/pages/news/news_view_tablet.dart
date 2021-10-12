@@ -6,21 +6,25 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:zawadi_design/app/app.locator.dart';
 import 'package:zawadi_design/pages/news/view_model.dart/news_viewmodel.dart';
-import 'package:zawadi_design/pages/news/widgets/articles_list.dart';
 import 'package:zawadi_design/pages/news/widgets/tablet/article_list_tablet.dart';
+import 'package:zawadi_design/pages/news_source_view/sources_view.dart';
 
 class NewsViewTablet extends StatelessWidget {
   const NewsViewTablet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<NewsViewModel>.reactive(
-      disposeViewModel: false,
-      fireOnModelReadyOnce: true,
-      initialiseSpecialViewModelsOnce: true,
-      onModelReady: (model) => model.futuresMap,
-      viewModelBuilder: () => locator<NewsViewModel>(),
-      builder: (context, model, child) => NewsViewTabletContents(),
+    return SplitViewer(
+      menuWidth: 240,
+      menu: SourcesViewPage(),
+      content: ViewModelBuilder<NewsViewModel>.reactive(
+        disposeViewModel: false,
+        fireOnModelReadyOnce: true,
+        initialiseSpecialViewModelsOnce: true,
+        onModelReady: (model) => model.futuresMap,
+        viewModelBuilder: () => locator<NewsViewModel>(),
+        builder: (context, model, child) => NewsViewTabletContents(),
+      ),
     );
   }
 }
@@ -55,6 +59,18 @@ class NewsViewTabletContents extends ViewModelWidget<NewsViewModel> {
           // return ZawadiMethods.viewTransition(context, SourcesViewPage());
         },
       ),
+      leading: Responsive.isTablet(context)
+          ? GestureDetector(
+              onTap: () {
+                // Scaffold.of(context).openDrawer();
+              },
+              child: Icon(
+                CupertinoIcons.sidebar_left,
+                color: Theme.of(context).primaryColor,
+                size: 25,
+              ),
+            )
+          : SizedBox(),
     );
   }
 
@@ -65,7 +81,7 @@ class NewsViewTabletContents extends ViewModelWidget<NewsViewModel> {
             backgroundColor: Colors.brown[100],
           )
         : ZawadiScaffold(
-            padding: EdgeInsets.only(left: 60, right: 60),
+            padding: EdgeInsets.only(left: 8, right: 10),
             backgroundColor: Colors.brown[100],
             body: CustomScrollView(
               physics: BouncingScrollPhysics(),

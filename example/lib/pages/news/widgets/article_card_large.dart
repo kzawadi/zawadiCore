@@ -44,11 +44,13 @@ class ArticleCardLarge extends StatelessWidget {
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                Flexible(
+                  flex: 5,
+                  // padding:
+                  //     const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                   child: AutoSizeText(
                     article?.name ?? "",
                     style: GoogleFonts.notoSans(
@@ -61,11 +63,14 @@ class ArticleCardLarge extends StatelessWidget {
                     ),
                     minFontSize: 12,
                     maxFontSize: 16,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+                Flexible(
+                  flex: 3,
+                  // padding:
+                  //     const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
                   child: AutoSizeText(
                     article?.getPublishedAtFormattedTime ?? '00:00:00:00',
                     style: Theme.of(context).textTheme.caption!.copyWith(
