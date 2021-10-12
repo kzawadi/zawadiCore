@@ -1,5 +1,8 @@
 // split_view.dart
+<<<<<<< HEAD
 import 'package:designsys/designsys.dart';
+=======
+>>>>>>> 35ababcc045023b18f44450ad790113d2c352904
 import 'package:designsys/responsive/responsive.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +38,11 @@ class SplitViewer extends StatelessWidget {
       );
     } else {
       // narrow screen: show content, menu inside drawer
+<<<<<<< HEAD
       return ZawadiScaffold(
+=======
+      return Scaffold(
+>>>>>>> 35ababcc045023b18f44450ad790113d2c352904
         body: content,
         drawer: SizedBox(
           width: menuWidth,
