@@ -46,8 +46,8 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
                   child: Stack(
                     alignment: AlignmentDirectional.center,
                     children: [
-                      Image.network(
-                        "https://github.com/RitickSaha/glassmophism/blob/master/example/assets/bg.png?raw=true",
+                      Image.asset(
+                        "assets/images/back.jpg",
                         fit: BoxFit.cover,
                         height: screenHeight(context),
                         width: 240,
@@ -57,15 +57,15 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
                         width: 240,
                         height: screenHeight(context),
                         borderRadius: 0,
-                        blur: 20,
+                        blur: 100,
                         alignment: Alignment.bottomCenter,
                         border: 0.2,
                         linearGradient: LinearGradient(
                             begin: Alignment.center,
                             end: Alignment.center,
                             colors: [
-                              Color(0xFFffffff).withOpacity(0.1),
-                              Color(0xFFFFFFFF).withOpacity(0.05),
+                              Colors.white.withOpacity(0.1),
+                              Colors.white.withOpacity(0.05),
                             ],
                             stops: [
                               0.1,
@@ -75,8 +75,8 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            Color(0xFFffffff).withOpacity(0.5),
-                            Color((0xFFFFFFFF)).withOpacity(0.5),
+                            Colors.white.withOpacity(0.5),
+                            Colors.white.withOpacity(0.5),
                           ],
                         ),
                         child: _sourcesList(
@@ -162,11 +162,12 @@ class SourceTile extends StatelessWidget {
       child: ZawadiExpansionTile(
         backgroundColor: Colors.brown[200],
         iconColor: Theme.of(context).primaryColor,
+        childrenPadding: EdgeInsets.only(top: 4, bottom: 4),
         title: AutoSizeText(
           source?.name ?? '',
           style: GoogleFonts.notoSerif(
             textStyle: Theme.of(context).textTheme.headline6,
-            color: Colors.tealAccent[700],
+            color: Colors.black,
           ),
           minFontSize: 16,
           maxFontSize: 18,
@@ -176,7 +177,7 @@ class SourceTile extends StatelessWidget {
           child: AutoSizeText(
             source!.name!.substring(0, 1),
             style: Theme.of(context).textTheme.headline5!.copyWith(
-                  color: Colors.brown,
+                  color: Colors.white54,
                 ),
           ),
         ),
