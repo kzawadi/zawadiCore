@@ -21,7 +21,7 @@ class SplitViewer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final screenWidth = MediaQuery.of(context).size.width;
-    if (Responsive.isTablet(context)) {
+    if (Responsive.isTablet(context) || Responsive.isDesktop(context)) {
       // widescreen: menu on the left, content on the right
       return Row(
         children: [
@@ -29,7 +29,7 @@ class SplitViewer extends StatelessWidget {
             width: menuWidth,
             child: menu,
           ),
-          Container(width: 0.5, color: Colors.black),
+          Container(width: 0.0, color: Colors.black),
           Expanded(child: content),
         ],
       );

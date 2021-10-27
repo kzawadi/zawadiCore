@@ -40,14 +40,19 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
         // body:
         viewModel.dataReady("sources")
             ? Scaffold(
+                extendBody: true,
+                // appBar: AppBar(
+                //   backgroundColor: Colors.brown[100],
+                //   toolbarHeight: 120,
+                // ),
                 body: Container(
-                  height: double.infinity,
+                  // height: double.infinity,
                   width: double.infinity,
                   child: Stack(
                     alignment: AlignmentDirectional.center,
                     children: [
                       Image.asset(
-                        "assets/images/back.jpg",
+                        "assets/images/ios.jpg",
                         fit: BoxFit.cover,
                         height: screenHeight(context),
                         width: 240,
@@ -56,32 +61,36 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
                       GlassmorphicContainer(
                         width: 240,
                         height: screenHeight(context),
-                        borderRadius: 0,
-                        blur: 100,
+                        borderRadius: 0.0,
+                        blur: 5,
                         alignment: Alignment.bottomCenter,
-                        border: 0.2,
+                        border: 0.0,
                         linearGradient: LinearGradient(
-                            begin: Alignment.center,
-                            end: Alignment.center,
-                            colors: [
-                              Colors.white.withOpacity(0.1),
-                              Colors.white.withOpacity(0.05),
-                            ],
-                            stops: [
-                              0.1,
-                              1,
-                            ]),
+                          begin: Alignment.center,
+                          end: Alignment.center,
+                          colors: [
+                            Colors.white.withOpacity(0.1),
+                            Colors.white.withOpacity(0.1),
+                          ],
+                          // stops: [
+                          //   0.1,
+                          //   1,
+                          // ],
+                          tileMode: TileMode.mirror,
+                        ),
                         borderGradient: LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            Colors.white.withOpacity(0.5),
-                            Colors.white.withOpacity(0.5),
+                            Colors.transparent,
+                            Colors.transparent,
                           ],
                         ),
-                        child: _sourcesList(
-                          context,
-                          viewModel.dataMap!["sources"],
+                        child: SingleChildScrollView(
+                          child: _sourcesList(
+                            context,
+                            viewModel.dataMap!["sources"],
+                          ),
                         ),
                       ),
                     ],
@@ -96,7 +105,7 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
       "Sources",
       style: GoogleFonts.nunito(
         textStyle: Theme.of(context).textTheme.headline6!.copyWith(
-              color: Theme.of(context).primaryColor,
+              color: Colors.black54,
             ),
         fontWeight: FontWeight.w900,
         fontSize: 25,
@@ -107,13 +116,14 @@ class SourceViewWidget extends ViewModelWidget<NewsViewModel> {
   }
 
   Widget _sourcesList(BuildContext context, List<Source> sources) {
-    return ListView(
+    return Column(
       // itemExtent: 3,
       children: [
-        SizedBox(height: 60),
+        SizedBox(height: 100),
         Center(child: _header(context)),
         SizedBox(height: 0),
         ListView.builder(
+          primary: true,
           shrinkWrap: true,
           itemCount: sources.length,
           itemBuilder: (context, index) {
@@ -160,8 +170,8 @@ class SourceTile extends StatelessWidget {
     return ClipSquircleBorder(
       radius: BorderRadius.all(Radius.circular(25)),
       child: ZawadiExpansionTile(
-        backgroundColor: Colors.brown[200],
-        iconColor: Theme.of(context).primaryColor,
+        // backgroundColor: Colors.brown[200],
+        iconColor: Colors.brown,
         childrenPadding: EdgeInsets.only(top: 4, bottom: 4),
         title: AutoSizeText(
           source?.name ?? '',
@@ -172,15 +182,18 @@ class SourceTile extends StatelessWidget {
           minFontSize: 16,
           maxFontSize: 18,
         ),
-        leading: Container(
-          padding: const EdgeInsets.all(5),
-          child: AutoSizeText(
-            source!.name!.substring(0, 1),
-            style: Theme.of(context).textTheme.headline5!.copyWith(
-                  color: Colors.white54,
-                ),
-          ),
-        ),
+        // headerBackgroundColor: Colors.brown[200],
+
+        // leading: Container(
+        //   padding: const EdgeInsets.all(5),
+        //   child: AutoSizeText(
+        //     source!.name!.substring(0, 1),
+        //     style: Theme.of(context).textTheme.headline5!.copyWith(
+        //           color: Colors.amber[100],
+        //         ),
+        //   ),
+        // ),
+        // leading: SizedBox(width: 0.1),
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),

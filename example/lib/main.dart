@@ -5,7 +5,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:zawadi_design/app/app.locator.dart';
 import 'package:zawadi_design/app/app.router.dart';
 
-// An example of different Zawadi custom design system
+// An example of different Zawadi custom design system and architecture
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ZawadiApp(
-      title: "",
+      title: "Zawadi News",
       primaryLightColor: Colors.teal,
       primaryDarkColor: Colors.teal,
       locale: DevicePreview.locale(context), // Add the locale here
