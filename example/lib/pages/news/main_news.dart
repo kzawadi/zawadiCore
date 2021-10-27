@@ -18,10 +18,7 @@ class NewsMainView extends StatelessWidget {
           portrait: NewsViewMobilePortrait(),
           landscape: NewsViewMobileLandscape()),
       tablet: NewsViewTablet(),
-      desktop: Center(
-          child: Container(
-              color: Colors.pinkAccent,
-              child: Text("DESKTOP MODE NOTE YET IMPLEMENTED"))),
+      desktop: NewsViewTablet(),
     );
   }
 }
